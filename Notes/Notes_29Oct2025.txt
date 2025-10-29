@@ -102,3 +102,65 @@ The method names and variables, must be in camelcase.
 	ex:
 		float calculateSimpleInterest(){}
 		int maximumScore;
+
+
+
+Lets start using IDE	(Integrated Development Environment)
+	allows us to type the code
+	save the code
+	helps us in getting "intellisense"
+		auto completion
+		suggestions, references
+	compile as you type itself and show syntax errors 
+	debugging
+	run the code
+	package the code as jar/war/ear
+	allow us to install plugins to get various supports.
+
+
+Lets use Spring Tool Suite
+
+when i open sts, it asks me to choose a workspace. 
+	here, you choose a folder where all your projects will be 		created.
+		you can choose a location, and it is not there, it 			will create for you.
+
+
+Lets create a project now in STS.
+
+1) File -> New -> Java Project
+
+if this option is not present, then choose "Project" option
+	file -> new -> Project
+		then search for "Java Project" option.
+
+	enter the name of the project "29-oct-2"
+
+A folder will be created in your workspace as your project name.
+
+
+
+What is debugging?
+	finding the bug, usually a logical error in a program.
+
+
+
+
+1) Break point
+	choose a line of code, from where you need to start debugging.
+2) Run the coding in debug mode.
+3) When the code is in break, in debug perspective,
+	we have 
+		step into
+			move to next line
+		step over
+			move to next statement
+		step return/out
+			complete the current function and exit
+
+
+	
+----------------------------------------
+Understanding Classpath and Java Packages
+
+
+
