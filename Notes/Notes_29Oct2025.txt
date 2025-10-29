@@ -46,3 +46,59 @@ These were the LTS versions
 
 Long Term Support
 
+JDK
+	java development kit
+		this is for the developers, to code, test
+
+JRE
+	java runtime environment
+		this is for users, running the code
+
+
+JVM
+	JRE contains JVM. When we run the code, JVM will
+		use JIT compiler to further compile the byte code into machine specific code and run.
+
+
+Java compilation process:
+	our java code is translated into byte code by javac
+	while running the code, it is further translated from byte code into machine language code using JIT of JVM of JRE
+
+
+
+
+
+
+
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\Jag\UST\Batch_29Oct25\all\Java>javac MyJavaApp.java
+
+D:\Jag\UST\Batch_29Oct25\all\Java>java MyJavaApp
+Hello from MyJavaApp!
+The sum of 10 and 25 is: 35
+
+D:\Jag\UST\Batch_29Oct25\all\Java>
+
+
+
+
+   *   Which of the three components (JVM, JRE, JDK) was primarily responsible for allowing you to use the `javac` command to compile your `.java` file into a `.class` file? Explain why.
+JDK provides everything. Including javac 
+
+        *   Which of the three components (JVM, JRE, JDK) was primarily responsible for allowing you to use the `java` command to execute your `.class` file and see its output? Explain why.
+        *   Briefly describe the core role of each: JVM, JRE, and JDK, connecting them to your experience in this task.
+
+
+
+The class name must follow PascalCase.
+	every first letter is in upper case only
+	ex:
+		MyJavaApp.java
+
+The method names and variables, must be in camelcase.
+	the first letter is in camel case. But subsequent words first letter will be in Upper case.
+	ex:
+		float calculateSimpleInterest(){}
+		int maximumScore;
