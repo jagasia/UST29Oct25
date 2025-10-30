@@ -175,5 +175,57 @@ Character
 char
 
 
+--------------------
+Type Casting (Implicit & Explicit)
+
+
+when i say a=b, if a and b are same data type or type, then there is no problem.
+
+Problem is, when a and b are not same data type or type.
+In such case, still it is possible to assign b into a, if
+	a and b are same family of data types?
+
+Integer is a wrapper class for int
+
+Integer, Float, Long, Double, etc these classes are derived from a super class Number
+
+
+
+int i=20;
+float f=i;		//implicit casting 	jdk 5 onwards
+float f=(float)i;	//explicit casting	jdk 1.4 or earlier
+
+i=(int)f;		//explicit casting in any java version
+
+
+
+----------------------
+Variable Scope (Local, Instance, Static)
+
+
+Employee e1=new Employee();
+
+//e1 is a reference variable.
+
+	Object is an instance of the class
+
+
+
+static data member   inside a class or interface only. Not inside method		     inside a class or interface
+static block		static{}
+static method		inside a class
+
+
+
+final can be used anywhere
+
+
+final data member	at class level or method level
+			instance or static in class level
+
+
+final method		cannot be overriden
+
+final class		cannot be inherited
 
 

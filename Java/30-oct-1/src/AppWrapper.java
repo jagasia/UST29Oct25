@@ -7,6 +7,8 @@ public class AppWrapper {
 		Scanner sc=new Scanner(System.in);
 		c=sc.next().charAt(0);
 		
+		
+		
 		if(Character.isLetter(c)) {
 			System.out.println("Alphabet");
 		}else if(Character.isDigit(c)) {
