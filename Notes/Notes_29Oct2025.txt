@@ -163,4 +163,34 @@ What is debugging?
 Understanding Classpath and Java Packages
 
 
+Can you create a class whose name is 'Scanner'?
+	Yes. we can create a class called canner.
+	The confusion you have is there is already a Scanner class available in java.util package.
+
+	java.util.Scanner sc=new java.util.Scanner(System.in);
+	the above is unusual, because, we normally import 
+
+import java.util.Scanner;
+
+	now if i say Scanner, then it means java.util.Scanner only.
+
+class Employee{
+}
+
+Employee raja=new Employee();
+
+
+in java, a package will be a folder for sure.
+
+------------------
+Command line arguments
+------------------------
+javac App.java
+java App
+
+
+java App Raja
+	Hello Raja
+
+
 

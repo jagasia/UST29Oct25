@@ -1,0 +1,179 @@
+Data types
+-----------
+int i;
+String []args;
+
+
+variables and constants.
+variables vs objects
+
+
+How the data is represented in memory?
+
+Data types
+Types
+
+
+Data types = primitive data types (fundamental)
+
+
+There are 8 primitive data types in Java.
+
+
+boolean		1 bit
+byte		1 byte	8 bits
+short		2 bytes	16 bits
+int		4 bytes	32 bytes
+float		4 bytes
+double		8 bytes
+long		8 bytes
+
+
+char		2 bytes		unicode charset
+
+
+
+
+	byte b=127;
+	b++;			
+	System.out.println(b);		//what is the output?
+
+
+
+
+
+int a=20;		
+int b=30;
+
+a=b;		//what happens?
+
+	= is used to assign. But what? value? or reference?
+
+
+	Employee e1=new Employee(1L, "Raja");
+	Employee e2=new Employee(2L, "Suresh");
+	Employee e3;		//=null
+
+	e1=e2;		//what is copied?	reference
+
+
+	
+
+
+Stack vs Heap
+
+
+Stack
+	all variables in a method (function) are in stack.
+
+
+
+Heap
+	the objects are stored in heap
+
+
+
+
+class Employee{
+	int id;		//primitive
+	String name;
+}
+
+
+new Employee();
+
+
+---------------------------------------------
+Understanding Wrapper Classes in Java
+
+
+For every primitive data type, there is a wrapper class.
+
+boolean		Boolean
+char		Character
+byte		Byte
+short		Short
+int		Integer		1
+long		Long		1L
+float		Float		1.2f		
+double		Double		1.2
+
+
+
+	int x=010;
+	System.out.println(x);		//what is the output?
+
+
+
+int i=20;
+int j=30;
+
+i=j;		//	the value of j is copied to i
+
+Integer z=new Integer(50);	
+Integer x=20;		//jdk 1.4 or earlier, ERROR
+		but from jdk 5 onwards, allowed. AUTO boxing
+Integer y=30;
+
+x=y;		//	the ref of y is copied to x
+
+x=50;
+int marks=z;	//error in 1.4 or earlier. but 5 onwards
+			auto unboxing
+
+
+Boxing:
+	primitive to wrapper
+	boxing means wrapping.
+
+class Integer{
+
+	int i;
+}
+
+
+	write a java method "swap" that accepts 2 numbers and swap them and ensure that the actual paramters are swapped.
+
+	
+void swap(Integer x,Integer y){
+
+}
+
+
+swap(a,b);
+
+a and b must be swapped.
+
+
+
+
+import java.util.Scanner;
+
+public class AppWrapper {
+
+	public static void main(String[] args) {
+		char c;
+		Scanner sc=new Scanner(System.in);
+		c=sc.next().charAt(0);
+		
+		
+		
+		if(Character.isLetter(c)) {
+			System.out.println("Alphabet");
+		}else if(Character.isDigit(c)) {
+			System.out.println("Number");
+		}else {
+			System.out.println("Are you entering a symbol?");
+		}
+		
+	}
+
+}
+
+
+Character
+char
+
+
+
+
