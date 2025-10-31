@@ -1,3 +1,7 @@
+== vs equals method
+
+
+
 Operators
 ---------
 String str1="hello";
@@ -137,4 +141,133 @@ So when you use `^` on booleans, it doesn’t short-circuit — both sides are a
 Would you like a visual example showing the difference between `^`, `&&`, and `||` in an `if` condition?
 
 
+
+display();
+display();
+display();
+display();
+display();
+
+--or--
+
+for(int i=0;i<5;i++)
+{
+	display();
+}
+
+
+
+
+-----------------------------------------
+in c language:
+
+int i=-100;
+if(i)
+	printf("Ok");
+else
+	printf("Not ok");
+
+
+but in java,
+the above condition, actually it is not a condition at all.
+So, java will not allow such expressions in if
+
+if(i)		//error.
+
+
+if suppose, i is boolean, then it is allowed.
+
+boolean b=false;
+
+if(b){
+	//correct syntax
+		....
+		....
+		....
+}else{
+	//since b is false, this portion is chosen
+}
+
+
+then i observed, the usage of curly braces {	}
+
+the curly braces are required, when you want to group multiple lines of code.
+
+
+public class App2 {
+
+	public static void main(String[] args) {
+		int x=20;
+		if(x<10)
+			x++;
+		System.out.println(x);
+	}
+
+}
+
+
+1) every if statement shall have curly braces to improve readability. Even if there is only 1 line also, it is good practice to use braces.
+2) Every variable you declare, must be initialized. Do not rely on default values.
+3) Every method to have only 1 return statement.
+4) use only good comment
+5) unused variable declarations to be removed.
+
+public class App2 {
+
+	public static void main(String[] args) {
+		String str="";
+		int x=20;
+		if(x<10)
+		{
+			//increment x if x is less than 10 
+			//the above is a good comment
+			x++;
+		}
+//		System.out.println(x);		//bad comment
+	}
+
+}
+
+
+
+
+
+public class AppGrade {
+
+	public static void main(String[] args) {
+		int score=90;
+		if(score>90) {
+			System.out.println("Excellent");
+		}else if(score>80) {
+			System.out.println("Good");
+		}else if(score>70) {
+			System.out.println("Pass");
+		}else {
+			System.out.println("Fail");
+		}
+	}
+
+}
+
+
+
+
+	if(x<=20)
+	{
+	....	
+	....
+	}
+
+
+in switch case:
+
+break
+default
+
+
+break means, exit the current block.
+
+
+default:
+	when none of the case (s) are matching
 
