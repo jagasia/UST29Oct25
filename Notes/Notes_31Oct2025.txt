@@ -1,0 +1,140 @@
+Operators
+---------
+String str1="hello";
+String str2=" ";
+String str3="world";
+System.out.println(str1+str2+str3);
+
+
+what operator we used?
+	+	oh... this is doing concatenation? Yes.
+
+So, operators word on operands to product result.
+
+
+2+3	=	5
+
+
+	in above example, 2 and 3 are "operands".
+	and , + is the operator.
+
+
+Based on how many operands, the operator operates, it can be
+	unary operator		++	--	!
+	binary operator
+	ternary operator
+	
+
+
+
+
+boolean x=false;
+
+if(!x)
+{
+	//yes it is false	
+}
+
+
+BODMAS rule is followed by Java.
+
+int x=2+3-4*5/2+1;
+System.out.println(x);		//output
+
+
+
+(String args[])
+(String []args)
+
+
+
+2	10
+3	11
+4	100
+
+10		if you shift 1 to left, we get	100
+
+a left shift by 1 gives multiply by 2
+
+
+4 	is 	100	and we shift 1 to right	=>	10
+
+this is what divide by 2
+
+4>>1		is 2
+
+8>>2		is 2
+
+
+
+
+0110
+0011
+----
+0010
+
+
+
+
+
+Yes — you’re absolutely right 👍
+In Java, the `^` operator works for **both numeric (bitwise)** and **boolean (logical)** operations.
+
+Let’s break it down clearly:
+
+---
+
+### 🔹 For **numbers (integers, longs, bytes, etc.)**
+
+`^` performs a **bitwise XOR** — compares bits and returns `1` if they differ.
+
+Example:
+
+```java
+int a = 5;  // 0101
+int b = 3;  // 0011
+int c = a ^ b; // 0110 -> 6
+```
+
+---
+
+### 🔹 For **booleans**
+
+`^` performs a **logical XOR** — returns `true` if **exactly one** operand is `true`, and `false` otherwise.
+
+|   A   |   B   | A ^ B |
+| :---: | :---: | :---: |
+| false | false | false |
+| false |  true |  true |
+|  true | false |  true |
+|  true |  true | false |
+
+Example:
+
+```java
+boolean x = true;
+boolean y = false;
+System.out.println(x ^ y); // true
+System.out.println(x ^ true); // false
+```
+
+---
+
+### 🔹 Difference from `&&` and `||`
+
+| Operator | Meaning | Short-circuits? | Truth Table Type                              |                 |         |
+| -------- | ------- | --------------- | --------------------------------------------- | --------------- | ------- |
+| `&&`     | AND     | ✅ yes           | logical                                       |                 |         |
+| `        |         | `               | OR                                            | ✅ yes           | logical |
+| `^`      | XOR     | ❌ no            | logical (for boolean) / bitwise (for numbers) |                 |         |
+| `&`      | AND     | ❌ no            | bitwise/logical                               |                 |         |
+| `        | `       | OR              | ❌ no                                          | bitwise/logical |         |
+
+So when you use `^` on booleans, it doesn’t short-circuit — both sides are always evaluated.
+
+---
+
+Would you like a visual example showing the difference between `^`, `&&`, and `||` in an `if` condition?
+
+
+
