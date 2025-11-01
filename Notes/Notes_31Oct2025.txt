@@ -265,9 +265,15 @@ break
 default
 
 
-break means, exit the current block.
+break means, exit the current block. If you don't use break, a case is matching means, remaining cases also considered as matching. To prevent them, break is used.
 
 
 default:
 	when none of the case (s) are matching
+
+
+
+https://github.com/jagasia/UST29Oct25
+
+
 

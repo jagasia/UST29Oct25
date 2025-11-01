@@ -1,0 +1,113 @@
+What are the types of loops in java?
+while
+do while
+for loop
+enhanced for loop 	(for each loop)
+
+
+public class App {
+
+	public static void main(String[] args) {
+	outer:	for(int i=0;i<10;i++) {//you are outer loop
+			for(int j=0;j<10;j++) {
+				if(j>=5) {
+					break outer; //how to break the outer loop.
+				}
+				System.out.printf("i=%d\tj=%d\n",i,j);
+			}
+		}
+	}
+
+}
+//0 0
+//0 1
+//0 2
+//0 3
+//0 4
+//1 0
+
+
+
+
+for(;;){
+	
+}
+
+
+
+
+
+
+
+public class App2 {
+
+	public static void main(String[] args) {
+		int count=1;
+		for(;;) {
+			System.out.println("Hello world");
+			if(count++>=5)	break;
+		}
+	}
+
+}
+
+
+
+while(true){
+}
+
+
+diff between while and do while
+
+while will check the condition first itself
+	to execute the body of the loop, the condition must be true
+
+do while will execute the body of the loop first.
+Then check condition to repeat the body or not.
+
+so, do while will execute the body atleast once.
+
+
+
+
+while(true){
+
+
+}
+
+
+for(int i=0;;){
+
+}
+
+
+//variable i cannot be used here
+
+
+int i=0;
+for(;i<10;i++){
+}
+
+
+
+
+break
+	The break statement breaks the execution of the current iteration of the loop. break exits the loop.
+
+continue also breaks the current iteration of the loop. continue forces next iteration.
+
+
+
+
+
+public class AppBreakContinue {
+
+	public static void main(String[] args) {
+		for(int i=0;i<10;i++) {
+			if(i%2==0)
+				continue;
+			System.out.println(i);
+		}
+	}
+
+}
