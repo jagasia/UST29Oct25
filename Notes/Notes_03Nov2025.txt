@@ -115,3 +115,12 @@ int []arr1={61,27,83,49,15};
 
 //in java, can we resize an array?	cannot.
 
+--------------------------------------------
+Comparator
+	is a functional interface (only 1 abstract method)
+	
+
+Comparator interface has compare method.
+
+
+
