@@ -1,0 +1,117 @@
+Arrays in Java
+
+in c, c++ the arrays were different syntax. In java it is different.
+
+
+in c,
+
+int arr[10];		//this is correct in c language. But not correct in java language.
+
+in Java,
+
+int arr[]=new int[10];	//correct in java.
+
+
+the new operator can be used to create objects and also used to size the arrays. Allocate the memory for array.
+
+
+void display(){
+	Employee e;		//where is e.	//line 1
+	e=new Employee();	//heap memory allocated	//line 2
+	new Employee();		//heap memory allocated	//line 3
+}
+
+in the above code, line 1, e is created in stack and it has null.
+in line 2, a heap memory is allocated and its reference is stored in e, which is a stack variable.
+in line 3, a heap memory is allocated but not referred by any stack variable.
+
+
+
+
+int arr[]=new int[10];	//correct in java.
+
+the above code is inside a java method. So, int arr[] will allocate a stack memory.
+
+then new int[10] allocates memory in heap. Its reference is kept in stack.
+
+Am i correct?
+
+
+
+
+Employee []arr=new Employee[10];
+
+now what is arr[0]?	is the first element of array and it is now null.
+
+arr[0]=new Employee();		//this is must.
+
+
+Employee e;
+e.id=123;		//NullPointerException
+			//because, e=new Employee();
+
+
+
+
+
+
+
+main(String args[]){}
+
+String []args
+
+both are correct.
+
+
+---------------------------------
+Arrays and loops.
+
+How to find the largest number in an arry?
+	sort the array.
+	element at index n-1		(if n is length)
+
+but why would you sort the array? if it is not the requirement.
+
+
+import java.util.Scanner;
+
+public class AppLargest {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("How many elements?");
+		int n=sc.nextInt();
+		int []arr=new int[n];
+		for(int i=0;i<n;i++) {
+			System.out.printf("Give input for index: %d",i);
+			arr[i]=sc.nextInt();
+		}
+		
+		System.out.println("Finding largest element of the array...");
+		int largest = Integer.MIN_VALUE;
+		for(int x:arr) {
+			if(x>largest) {
+				largest=x;
+			}
+		}
+		System.out.printf("Found. The largest element is: %d",largest);
+	}
+
+}
+
+
+------------------
+You can create an array of any type.
+
+it can be primitive type or any other reference type also.
+
+Object arr1[]=new Object[5];
+Object arr2[]=new Date[10];
+List<String> list=new ArrayList<>();	
+
+
+
+int []arr1={61,27,83,49,15};
+
+//in java, can we resize an array?	cannot.
+
