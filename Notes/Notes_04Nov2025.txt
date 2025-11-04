@@ -230,6 +230,136 @@ String str1=new String("hello");
 How many objects of Employees are there?
 
 
+	constructors do not mention even 'void'
+
+	return type of a method can be
+		void
+		primitive data type
+		reference type
+
+
+
+
+access modifiers
+	public
+	protected
+	default
+	private
+
+
+
+
+	public>	protected>	default>	private
+
+
+
+	all members inside a class can access other members of that 		class.
+
+
+private
+	private members are accessible within the class only.
+
+default
+	if you do not mention any access specifier, it is in 				default visibility.
+	default members are accessible only within the current 		package only.
+	
+protected
+	protected members of a class, are accessible only to the 
+		members of current class,
+		members of current package,
+		sub classess of current or any package.
+
+public
+	accessible from
+		current class
+		current package
+		outside the package
+		anywhere
+
+it is recommended not to use "public" for data members of a class.
+
+
+
+	public int[] removeDuplicates(int []arr){
+		//write your code here
+	}
+
+
+
+
+
+public class App5{
+	public int[] removeDuplicates(int []arr){
+		
+	}
+}
+
+
+
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+
+public class App51 {
+
+	public static int[] removeDuplicates(int[] arr) {
+		Integer[] boxed = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+		LinkedHashSet<Integer> set = new LinkedHashSet<>(Arrays.asList(boxed));
+		int[] result = set.stream().mapToInt(Integer::intValue).toArray();
+		return result;
+	}
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 3, 3, 4, 5, 3, 6, 1, 1, 7 };
+		arr = removeDuplicates(arr);
+		System.out.println(Arrays.toString(arr));
+	}
+}
+
+
+
+
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+
+public class App51 {
+
+	private static boolean isFound(int arr[], int element) {
+		boolean result=false;
+		for(int x : arr) {
+			if(x==element) {
+				result=true;
+				break;
+			}
+		}
+		return result;
+	}
+	
+	public static int[] removeDuplicates(int[] arr) {
+		int temp[]=new int[arr.length];
+		int index=0;
+		for(int i=0;i<arr.length;i++) {
+			//check if current element is found in the result array or not.
+			if(!isFound(temp, arr[i])) {
+			//if not then only add.
+				temp[index++]=arr[i];
+			}
+		}
+		
+		//result array size to be trimmed
+		int result[]=new int[index];
+		result=Arrays.copyOf(temp, index);
+		return result;
+	}
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 22, 3, 3, 4, 5, 3, 6, 1, 1, 7 };
+		arr = removeDuplicates(arr);
+		System.out.println(Arrays.toString(arr));
+	}
+}
+
+
+
 
 
 
