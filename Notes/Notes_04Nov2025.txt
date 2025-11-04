@@ -1,0 +1,235 @@
+Bubble sort.
+	is a technique used to sort elements by
+		repeatedly comparing each subsequent elements
+		and swap if required.
+		Repeat this for n-1 passes
+			in each pass, n-pass-1 comparisons
+
+
+
+first element vs second element comparison
+	if first>second then swap
+
+second element vs third element 
+3rd vs 4th
+4th vs 5th
+
+n-2th vs n-1th
+
+
+
+for(int i=0; true; i++)
+{
+
+}
+
+
+
+finally the code with observation:
+
+import java.util.Arrays;
+
+public class App {
+
+	public static void main(String[] args) {
+		int []arr= {61,27,83,49,15};
+		int n=arr.length;
+
+		for(int pass=0;pass<n-1;pass++) {
+			for(int i=0;i<n-1-pass;i++) {
+				if(arr[i]>arr[i+1]) {
+					//swap
+					System.out.printf("arr[%d] > arr[%d]. So swapping\n",i,i+1);
+					int temp=arr[i];
+					arr[i]=arr[i+1];
+					arr[i+1]=temp;
+				}
+				
+			}
+			System.out.println("End of pass:"+pass);
+			System.out.println(Arrays.toString(arr));
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+51, 100, 101, 2, 9, 5, 1
+
+
+1, 2, 5, 9, 51, 100, 101, 
+
+
+
+
+import java.util.Arrays;
+
+public class AppSelection {
+
+	public static int findIndexOfLargestAndSmallest(int arr[], int pass) {
+		int smallest=Integer.MAX_VALUE;
+		int index=-1;
+		for(int i=pass;i<arr.length;i++) {
+			if(arr[i]<smallest) {
+				smallest=arr[i];
+				index=i;
+			}
+		}
+		return index;
+	}
+	
+	public static void main(String[] args) {
+		int []arr= {51,26,73,48,95,61,17,84,29,13};
+		
+		int n=arr.length;
+		for(int pass=0;pass<n-1;pass++) {
+			System.out.println("Pass #"+pass);
+			//find the largest and smallest index
+			int smallestIndex=findIndexOfLargestAndSmallest(arr, pass);
+			//swap the element at smallestIndex with element at pass index;
+			int temp=arr[pass];
+			arr[pass]=arr[smallestIndex];
+			arr[smallestIndex]=temp;
+			System.out.println("Array after pass#: "+pass+" is \n"+Arrays.toString(arr));
+		}
+	}
+
+}
+
+
+
+
+
+Pass #0
+Array after pass#: 0 is 
+[13, 26, 73, 48, 95, 61, 17, 84, 29, 51]
+Pass #1
+Array after pass#: 1 is 
+[13, 17, 73, 48, 95, 61, 26, 84, 29, 51]
+Pass #2
+Array after pass#: 2 is 
+[13, 17, 26, 48, 95, 61, 73, 84, 29, 51]
+Pass #3
+Array after pass#: 3 is 
+[13, 17, 26, 29, 95, 61, 73, 84, 48, 51]
+Pass #4
+Array after pass#: 4 is 
+[13, 17, 26, 29, 48, 61, 73, 84, 95, 51]
+Pass #5
+Array after pass#: 5 is 
+[13, 17, 26, 29, 48, 51, 73, 84, 95, 61]
+Pass #6
+Array after pass#: 6 is 
+[13, 17, 26, 29, 48, 51, 61, 84, 95, 73]
+Pass #7
+Array after pass#: 7 is 
+[13, 17, 26, 29, 48, 51, 61, 73, 95, 84]
+Pass #8
+Array after pass#: 8 is 
+[13, 17, 26, 29, 48, 51, 61, 73, 84, 95]
+
+
+
+---------------------------------------
+Methods
+	static methods
+	non static methods	(instance methods)
+	overloading
+
+
+
+static method:
+	A static method belongs to the class, not for each object.
+	A static method can be called using class name. Not necessary to create object to call a static method. 
+		of course, we can call a static method using
+			class name or 
+			object name
+
+
+static members of a class, does NOT belong to every object of the class. There is only 1 copy of that static member is shared by all objects of the class. Even if there is no object created for the class, these static members are there. 
+
+So they are for the class. Not for every object.
+
+
+Polymorphism
+------------
+	static polymorphism	/	compile time 
+	dynamic polymorphism	/	run time
+
+
+Overloading
+----------------
+Method overloading is a feature, that allows us to
+	define multiple methods with same name but
+		different number of arguments
+		different type/data type of arguments
+		different order of type of arguments
+
+	shortly, different signature.
+
+
+Method overloading in a single class, is known during compilation itself
+
+
+Overriding
+------------
+The class that extends super class or implements interface, can provide its own definition of a method. 
+
+
+	itsupport@iiht.com
+	looping sarath babu
+
+
+
+------------------------------
+The reference types are always passed by reference.
+The value types are always passed by value.
+
+
+Pass by value?
+	a copy of the actual paramter is copied to the formal 		paramter.
+
+Pass by reference?
+	not a separate copy, but the reference of actual parameter 		is copied to the formal parameter.
+
+
+
+
+create a java method that squares all elements of the array.
+
+
+public class AppS{
+	private static void squareIt(int ...arr){
+		for(int i=0;i<arr.length;i++){
+			//arr[i]=arr[i]*arr[i];
+			arr[i]=(int)Math.pow(arr[i],2);
+		}
+	}
+	public static void main(String []args){
+		int []numbers={1,2,3,4,5,6};
+		squareIt(numbers);
+		System.out.println(Arrays.toString(numbers));
+	}
+}
+
+
+Employee e1=new Employee();
+Employee e2=e1;
+Employee e3=e2;
+String str="hello";
+String str2="hello;
+String str1=new String("hello");
+
+How many objects of Employees are there?
+
+
+
+
+
