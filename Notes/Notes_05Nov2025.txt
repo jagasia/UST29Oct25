@@ -1,0 +1,50 @@
+UML & Documentation
+-------------------
+SDLC - Software Development Life Cycle
+	Defines the phases of development
+
+the following phases we identify (subject to change)
+planning
+requirements gathering
+
+
+
+design
+
+development
+
+testing
+
+deployment
+
+maintenance
+
+
+
+UML diagrams
+	use case diagram
+	class diagram
+	object diagram
+	sequence diagram
+	activity diagram
+	state machine diagram
+	interaction overview diagram
+	composite structure diagram
+	communication diagram
+	timing diagram
+	profile diagram
+	package diagram
+	component diagram
+	deployment diagram
+
+
+--------------------------------------------------
+class Employee{
+	Department d;		//it is null
+
+	public void method(){
+		d=new Department();	
+	}
+}
+
+

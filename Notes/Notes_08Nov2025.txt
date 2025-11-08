@@ -1,0 +1,10 @@
+Arrays
+Methods
+UML & Documentation
+Source Control with Git/GitLab
+OOP – Classes & Objects
+Packages & Access Modifiers
+
+--------------------
+Packages
+	are similar to folders (directories) in file system

@@ -1,0 +1,75 @@
+class Employee{
+	Long id;
+	String name;
+	Department department;
+	
+}
+
+
+class Department{
+	Long id;
+	String name;
+}
+
+
+
+
+any data member of a class, that has
+	getter	(or)
+	setter	(or)
+	both
+
+is a property.
+
+
+---------------------------------------
+Whenever you create a "Type" class. i have some guideliness.
+
+1) package is always required. encouraged.
+	starts with	com or org
+
+	com.ust.demo		is my example
+	com.ust.task		is for you
+
+	org.apache.tomcat
+
+
+	com.ust.hrms.entity		Customer
+
+2) class name must be a noun. 
+3) data members of class never by "public"
+4) use getters or setters or both for providing access,
+	so that, you can have data logic or validation rules
+
+
+
+
+constructors
+1) it is always advisable to create a no-arg constructor, whenever you create a constructor with args.
+
+
+
+class names in PascalCase
+method names in camelCase
+variables in camelCase
+constants in FULL_CAPITALS
+operators in fullsmallletter
+
+new
+instanceof
+
+
+
+
+
+
+Employee emp;	//it is not object. it is reference variable
+
+emp=new Employee();
+
+
+
+Employee e1=new Employee();
+
+System.gc();
+

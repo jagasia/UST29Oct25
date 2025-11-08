@@ -1,0 +1,46 @@
+Source control
+-----------------
+when multiple coders work on a single project, we should have control on what version each coder has published.
+
+We can diff them, and decide to merge or fix conflicts or discard anything.
+
+We can trace, what is added, what is removed, 
+
+
+
+Git is a versioning tool that we can install in our computer.
+
+we can create a local repository and sync it with a remote repository.
+
+
+local repository:
+	the folder that you sync with remote
+
+remote repository?
+	it can be created using
+		github
+		gitlabe
+		bitbucket
+		etc
+
+
+
+https://github.com/jagasia/gokul.git
+the above is our remote repository
+
+now, lets create a local repository.
+
+D:\jag\gitdemo\gokul
+
+
+
+
+
+
+
+
+
+Demo:
+
+Lets collaborate with Nithin.
+
