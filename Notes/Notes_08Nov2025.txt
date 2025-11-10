@@ -8,3 +8,12 @@ Packages & Access Modifiers
 --------------------
 Packages
 	are similar to folders (directories) in file system
+Encapsulation
+-----------------
+accessing data members using methods
+wrapping methods and data inside a class
+
+Encapsulation
+	"en"
+	"capsule"	cover, wrap, etc
+	

@@ -1,0 +1,290 @@
+Java, Encapsulation & Abstraction
+---------------------------------------------
+package com.ust.ecom;
+
+public class Product {
+	private Long id;
+	private String name;
+	private Double price;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	
+}
+
+
+-----------------------------------
+What is abstract class?
+	cannot be instantiated.		
+	hiding the implementation
+	showing necessary details / behavior
+
+
+class Chair
+{
+
+}
+
+class BookShelf
+{}
+
+
+
+get the following inputs from the user:
+int id;			123
+String name;		Raj Kumar
+float marks;		99.99f
+
+
+1: Chair
+2: Book Shelf
+3: Exit
+
+
+
+package com.ust.ecom;
+
+import java.util.Scanner;
+
+public class Furniture {
+	private String name;
+	private String color;
+
+	public void acceptDetails() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Name:");
+		name=sc.nextLine();
+		System.out.println("Color:");
+		color=sc.nextLine();
+	}
+	public void displayDetails() {
+		System.out.println("Name:"+name);
+		System.out.println("Color:"+color);
+	}
+}
+
+
+
+package com.ust.ecom;
+
+import java.util.Scanner;
+
+public class Chair extends Furniture{
+	
+	private int noOfLegs;
+	
+	public void acceptDetails() {		//hiding super class method
+		super.acceptDetails();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Number of Legs:");
+		noOfLegs=sc.nextInt();
+	}
+	public void displayDetails() {
+		super.displayDetails();
+		System.out.println("Number of Legs:"+noOfLegs);
+	}
+	
+}
+
+
+package com.ust.ecom;
+
+import java.util.Scanner;
+
+public class BookShelf extends Furniture{
+	private int noOfShelves;
+	
+	public void acceptDetails() {
+		super.acceptDetails();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Number of Shelves:");
+		noOfShelves=sc.nextInt();
+	}
+	public void displayDetails() {
+		super.displayDetails();
+		System.out.println("Number of Shelves:"+noOfShelves);
+	}
+	
+}
+
+
+
+
+class Triangle extends Shape{
+	String calculateArea(){
+		return "1/2*b*h";
+	}
+}
+
+class Rectangle extends Shape{
+	String calculateArea(){
+		return "l*b";
+	}
+}
+
+abstract class Shape{
+	abstract String calculateArea();		
+}
+
+
+
+Interface
+-------------
+	List l=new ArrayList();
+
+
+class Jbl implements Jack{
+	void play();
+}
+class Sony implements Jack{
+	void play();
+}
+
+class Phone{
+	public void playMusic(Jack j){
+		j.play();
+	}
+}
+
+
+
+Sony sony=new Sony();
+
+new Phone().playMusic(sony);
+
+-----------------------------------------------------
+Difference between  Abstract class and Interface.
+
+Abstract class is a class.
+Interface is an interface.
+
+
+
+A a=new B();
+
+Employee e=new Employee();
+e.work();		//what to do?????????
+e=new Developer();
+e.work();
+e=new Ceo();
+e.work();
+e=new Director();
+e.work();
+
+
+
+Connection con=DriverManager.getConnection(......
+Statement
+ResultSet
+
+
+List<Integer> list=new ArrayList<>();
+List<Integer> list=new LinkedList<>();
+
+
+Collections.sort(list);
+
+Interface
+------------
+	everything inside an interface is public by default. even if you do not mention.
+	all data members inside an interface become CONSTANT only. So, a value or reference must be assigned.
+
+	
+
+
+
+
+
+interface Person{
+	int MAX_INSTANCES=100;
+	void speak();
+}
+
+This line:
+	int MAX_INSTANCES=100;
+is automatically considered as:
+	public static final 	int MAX_INSTANCES=100;
+
+class Teacher implements Person{
+@Override	void speak(){
+		System.out.println("Teacher speaks");
+	}
+}
+class Student implements Person{
+@Override	void speak(){
+		System.out.println("Student never speaks");
+	}
+}
+public class App{
+	public static void main(String []args){
+		Person raja=new Student();
+		raja.speak();
+	}
+}
+
+
+
+UPTO Java v7, 
+an interface can contain only
+	constants and abstract methods.
+
+
+Java 8 onwards,
+	interfaces can have
+		constants and abstract methods.
+		and also,
+			static methods and default methods with body.
+
+
+
+package com.ust.ecom;
+
+interface Person{
+	void speak();
+	static void walk() {
+		System.out.println("Person walks");
+	}
+	default void run() {
+		System.out.println("Person run");
+	}
+}
+class Student implements Person{
+	public void speak() {
+		System.out.println("Student speaks");
+	}
+	public void run() {
+		//i want to call the run method of interface.
+		Person.super.run();
+		System.out.println("studnet runs");
+	}
+}
+public class App2 {
+
+	public static void main(String[] args) {
+		Person raja=new Student();
+		raja.speak();
+		Person.walk();
+		raja.run();
+	}
+
+}
+
+
+
