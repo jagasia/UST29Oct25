@@ -1,0 +1,264 @@
+IS-A vs HAS-A Relationship in Java
+
+
+
+Relationships
+------------------
+1) "is a"
+--------
+Employee raja=new Employee();
+
+raja is a(n) Employee
+
+
+
+
+between object and a class
+
+
+2) Has a
+------------
+A has B
+B is a part of A
+
+class Address{}
+
+class Employee{
+	Long id;
+	String name;
+	Address address;
+}
+
+
+
+
+3) Kind of
+--------------
+
+A is a Kind of B
+
+class ContractEmployee extends Employee{
+}
+
+
+ContractEmployee is a kind of Employee
+
+
+Triangle is a kind of Shape
+
+
+class Notepad : NavBar, StatusBar, ScrollBar, TitleBar
+{}
+the above may work, but it is not exactly representing reality
+
+class Notepad
+{
+	NavBar navBar;
+	StatusBar statusBar;
+	ScrollBar scrollBar;
+
+	public showTitle(){
+		TitleBar t=new TitleBar();
+		t.show();
+	}
+}
+
+
+3) Utilization relationship
+
+create an object of another class inside a method in your class.
+
+
+
+
+
+Has - a
+-----------
+	Aggregation		A and B exists independently. and they associate.
+	Composition		A has B means. The life time of B is decided by A. B cannot exist independently
+
+
+
+
+class Sony{
+}
+
+class BmwCar
+{
+	Engine e;		//tightly coupled
+	Sony s;		//tightly coupled
+}
+
+
+class Jbl
+{
+}
+
+class AudiCar
+{
+	Engine e;		//tightly coupled
+	Jbl j;		//tightly coupled
+}
+
+
+Interface Audio{
+}
+
+class Pioneer implements Audio{
+
+}
+class Boss implements Audio{
+
+}
+
+
+class Car{
+	Audio a;		//loosely coupled
+}
+
+
+
+
+
+--------------------------------------------
+super and this
+overriding
+overriding rules
+
+
+Overriding rules:
+-----------------------
+	1) sub class method, must have same method name, same parameters, same return type.
+	2) sub class method cannot introduce new exceptions in throws clause.
+	3) sub class method cannot reduce the visiblity
+
+@Override		even if you do not use this annotation, then also, it is overriding only. 
+
+
+
+
+
+POJO
+	Plain Old Java Objects
+
+
+
+covariance
+equals() method
+
+
+class Shape{
+	Shape getInstance(){
+		return new Shape();
+	}
+}
+
+class Rectangle extends Shape{
+	Rectangle getInstance(){
+		return new Rectangle();
+	}
+}
+
+
+The overriding method return type must be covariant with the super class method return type
+
+
+
+
+Runtime.getRuntime();
+
+
+	==	compares if the operands are equal or not.
+		what it compares? 
+
+		it compares the values of operands when the operands are value types.
+		it compares the references of operands when the operands are reference types.
+
+	equals method is meant for comparing the values only.
+
+
+
+class User{}
+
+class Buyer extends User{}
+
+class Seller extends User{}
+
+
+
+
+User u=new Buyer();
+u.buy();		//you cannot call sell() here...
+u=new Seller();
+
+
+Problem:
+The inheritance between Square and Rectangle violates the Liskov Substitution Principle. A Square cannot safely override setWidth/setHeight without breaking Rectangle's expected behavior. This leads to fragile and inconsistent code when using polymorphism.
+
+Solution:
+Refactor using a common Shape abstraction. Let Rectangle and Square implement Shape independently, preserving their own invariants and avoiding misuse of inheritance.
+
+
+Code:
+abstract class Shape {
+    public abstract int getArea();
+}
+
+class Rectangle extends Shape {
+    private int width;
+    private int height;
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() { return width; }
+    public int getHeight() { return height; }
+
+    public void setWidth(int width) { this.width = width; }
+    public void setHeight(int height) { this.height = height; }
+
+    @Override
+    public int getArea() {
+        return width * height;
+    }
+
+    public void display() {
+        System.out.println("Rectangle: width = " + width + ", height = " + height + ", area = " + getArea());
+    }
+}
+
+class Square extends Shape {
+    private int size;
+
+    public Square(int size) {
+        this.size = size;
+    }
+
+    public int getSize() { return size; }
+
+    public void setSize(int size) { this.size = size; }
+
+    @Override
+    public int getArea() {
+        return size * size;
+    }
+
+    public void display() {
+        System.out.println("Square: size = " + size + ", area = " + getArea());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape rect = new Rectangle(4, 5);
+        Shape square = new Square(6);
+
+        ((Rectangle) rect).display();
+        ((Square) square).display();
+
+        System.out.println("Rectangle area via Shape: " + rect.getArea());
+        System.out.println("Square area via Shape: " + square.getArea());
+    }
+}
