@@ -1,0 +1,511 @@
+LinkedList
+	a linked list has nodes.
+	a node has data and link to other node.
+		what is that data?	is it a number? is it a string? is it an employee?
+What is generics?
+	
+
+LinkedList		java jdk 1.4 or earlier
+LinkedList<T>	java jdk 5 onwards
+
+LinkedList list=new LinkedList();		//old java
+list.add(new String("Hello"));
+list.add(new Integer(20));
+list.add(new Float(2.4f));
+
+
+LinkedList<Integer> list=new LinkedList<Integer>();		//this is generics
+
+before 1.5
+
+class LinkedList
+{
+	
+}
+
+class Node{
+	Object data;
+}
+
+
+class Node<T>{
+
+}
+
+in java 5 onwards, they have not defined a Node of type Object.
+
+
+
+
+
+
+public class Mathematics<T> {
+
+    @SuppressWarnings("unchecked")
+    public T add(T a, T b) {
+
+        if (a instanceof Integer && b instanceof Integer) {
+            Integer result = (Integer) a + (Integer) b;
+            return (T) result;
+        } 
+        else if (a instanceof Double && b instanceof Double) {
+            Double result = (Double) a + (Double) b;
+            return (T) result;
+        } 
+        else if (a instanceof Float && b instanceof Float) {
+            Float result = (Float) a + (Float) b;
+            return (T) result;
+        } 
+        else if (a instanceof Long && b instanceof Long) {
+            Long result = (Long) a + (Long) b;
+            return (T) result;
+        } 
+        else if (a instanceof Short && b instanceof Short) {
+            Short result = (short) ((Short) a + (Short) b);
+            return (T) result;
+        } 
+        else if (a instanceof Byte && b instanceof Byte) {
+            Byte result = (byte) ((Byte) a + (Byte) b);
+            return (T) result;
+        }
+
+        return null; // unsupported type
+    }
+}
+
+
+
+
+
+public class App {
+
+	public static void main(String[] args) {
+//		Mathematics<Integer> m=new Mathematics<>();
+//		Integer result = m.add(2, 3);
+//		System.out.println(result);
+		
+		Mathematics<Float> m=new Mathematics<>();
+		System.out.println(m.add(1.5f, 2.5f));
+	}
+
+}
+
+
+
+
+
+
+
+
+
+public class JNode {
+	private Integer data;
+	private JNode next;
+	
+	public JNode() {}
+	
+	public JNode(Integer data) {
+		super();
+		this.data = data;
+	}
+
+	public JNode(Integer data, JNode next) {
+		super();
+		this.data = data;
+		this.next = next;
+	}
+
+	public Integer getData() {
+		return data;
+	}
+
+	public void setData(Integer data) {
+		this.data = data;
+	}
+
+	public JNode getNext() {
+		return next;
+	}
+
+	public void setNext(JNode next) {
+		this.next = next;
+	}
+
+	@Override
+	public String toString() {
+		return "JNode [data=" + data + ", next=" + next + "]";
+	}
+	
+	
+}
+
+
+
+
+public class JLinkedList {
+	private JNode head;
+	
+	public JLinkedList() {}
+
+	public JLinkedList(JNode head) {
+		super();
+		this.head = head;
+	}
+
+	public JNode getHead() {
+		return head;
+	}
+
+	public void setHead(JNode head) {
+		this.head = head;
+	}
+	
+	public void addNode(Integer data) {
+		JNode node=new JNode(data);
+		//find the tail and add the node.
+		JNode tail=null;
+		if(head==null) {
+			//linkedlist is currently empty. So adding node at head
+			head=node;
+			System.out.println("New node is added at head");
+			return;
+		}
+		for(tail=head;tail.getNext()!=null;tail=tail.getNext());
+		tail.setNext(node);
+		//done.
+		System.out.println("New node is added at tail");				
+	}
+	
+	public void traverse() {
+		for(JNode temp=head;temp!=null;temp=temp.getNext()) {
+			System.out.println(temp.getData());
+		}
+	}
+}
+
+
+
+public class App {
+
+	public static void main(String[] args) {
+//		Mathematics<Integer> m=new Mathematics<>();
+//		Integer result = m.add(2, 3);
+//		System.out.println(result);
+		
+//		Mathematics<Float> m=new Mathematics<>();
+//		System.out.println(m.add(1.5f, 2.5f));
+		
+		JLinkedList list=new JLinkedList();
+		list.addNode(10);
+		list.addNode(20);
+		list.addNode(30);
+		list.addNode(40);
+		
+		System.out.println("Displaying all nodes.....");
+		list.traverse();
+		
+	}
+
+}
+
+
+
+
+
+
+
+public class JNode<T> {
+	private T data;
+	private JNode next;
+	
+	public JNode() {}
+	
+	public JNode(T data) {
+		super();
+		this.data = data;
+	}
+
+	public JNode(T data, JNode next) {
+		super();
+		this.data = data;
+		this.next = next;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+	public JNode getNext() {
+		return next;
+	}
+
+	public void setNext(JNode next) {
+		this.next = next;
+	}
+
+	@Override
+	public String toString() {
+		return "JNode [data=" + data + ", next=" + next + "]";
+	}
+	
+	
+}
+
+
+
+
+
+public class JLinkedList<T> {
+	private JNode<T> head;
+	
+	public JLinkedList() {}
+
+	public JLinkedList(JNode<T> head) {
+		this.head = head;
+	}
+
+	public JNode<T> getHead() {
+		return head;
+	}
+
+	public void setHead(JNode<T> head) {
+		this.head = head;
+	}
+	
+	public void addNode(T data) {
+		JNode<T> node=new JNode<>(data);
+		//find the tail and add the node.
+		JNode<T> tail=null;
+		if(head==null) {
+			//linkedlist is currently empty. So adding node at head
+			head=node;
+			System.out.println("New node is added at head");
+			return;
+		}
+		for(tail=head;tail.getNext()!=null;tail=tail.getNext());
+		tail.setNext(node);
+		//done.
+		System.out.println("New node is added at tail");				
+	}
+	
+	public void traverse() {
+		for(JNode<T> temp=head;temp!=null;temp=temp.getNext()) {
+			System.out.println(temp.getData());
+		}
+	}
+}
+
+
+
+
+
+public class App {
+
+	public static void main(String[] args) {
+//		Mathematics<Integer> m=new Mathematics<>();
+//		Integer result = m.add(2, 3);
+//		System.out.println(result);
+		
+//		Mathematics<Float> m=new Mathematics<>();
+//		System.out.println(m.add(1.5f, 2.5f));
+		
+		JLinkedList<String> list=new JLinkedList<>();
+		list.addNode("India");
+		list.addNode("Australia");
+		list.addNode("Pakistan");
+		list.addNode("Bangladesh");
+		
+		System.out.println("Displaying all nodes.....");
+		list.traverse();
+		
+	}
+
+}
+
+
+
+-----------------------------------------------
+package com.ust.demo;
+
+public interface Audio {
+	void play();
+}
+
+
+
+------------------------------
+Date
+
+	java.util.Date
+	java.sql.Date
+	java.time.LocalDate
+	java.time.LocalTime
+
+
+java.util.Date
+	is a class
+
+
+Year
+Month
+Date
+Hour
+Minute
+Seconds
+Millis
+AM/PM
+GMT/IST
+
+
+java.util.Date		a long number		ticking every millisecond
+
+
+How to get input from user and store in a date object?
+
+
+explore the symbols used to represent the format of a date or its portions
+	dd
+	MM		11					02
+	MMM		Nov	
+	MMMM		November
+	M		11					2
+	yyyy		2025
+	yy		25
+	EEEE		Thursday
+
+	
+
+
+
+
+SimpleDateFormat
+	parse		convert String into Date
+	format		convert Date into String
+
+
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) throws ParseException {
+		String input=new Scanner(System.in).nextLine();
+		//to store this input into a java.util.Date object
+		Date dt=new Date();
+		//we need a method to convert String into java.util.Date
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
+		dt=sdf.parse(input);
+		System.out.println(dt);
+	}
+
+}
+
+
+
+
+
+
+
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) throws ParseException {
+		String input=new Scanner(System.in).nextLine();
+		//to store this input into a java.util.Date object
+		Date dt=new Date();
+		//we need a method to convert String into java.util.Date
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
+		sdf.setLenient(false);
+		dt=sdf.parse(input);
+		System.out.println(dt.toLocaleString());
+	}
+
+}
+
+
+32-Dec-2025
+Exception in thread "main" java.text.ParseException: Unparseable date: "32-Dec-2025"
+	at java.base/java.text.DateFormat.parse(DateFormat.java:399)
+	at App.main(App.java:15)
+
+
+
+
+
+How to display Date in a specific format?
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) throws ParseException {
+		String input=new Scanner(System.in).nextLine();
+		//to store this input into a java.util.Date object
+		Date dt=new Date();
+		//we need a method to convert String into java.util.Date
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MMM-yyyy");
+		sdf.setLenient(false);
+		dt=sdf.parse(input);
+		sdf=new SimpleDateFormat("EEEE dd-MMM-yy");
+		System.out.println(sdf.format(dt));
+	}
+
+}
+
+
+
+
+Date arithmetics.
+
+	find if a year is leap or not.
+
+import java.util.GregorianCalendar;
+
+public class App2 {
+
+	public static void main(String[] args) {
+		GregorianCalendar cal=new GregorianCalendar();
+		System.out.println(cal.isLeapYear(2027));
+	}
+
+}
+
+
+
+months between?
+
+
+
+import java.time.LocalDate;
+import java.time.Period;
+
+public class App3 {
+
+	public static void main(String[] args) {
+		LocalDate dt1=LocalDate.of(2003, 6, 1);
+		LocalDate dt2=LocalDate.now();
+		Period result = Period.between(dt1, dt2);
+		System.out.printf("You are %d year(s), %d month(s) and %d day(s) young",result.getYears(), result.getMonths(), result.getDays());
+	}
+
+}
+
+
+
+
