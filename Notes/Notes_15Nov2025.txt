@@ -1,0 +1,58 @@
+how can i convert char into int?
+	char c=5;
+	int i=(int)c-48;
+	int j=c-'0';
+
+	int x=20;
+	String str=x+"";
+	String str2=String.valueOf(x);
+
+
+test case expects output as		12.27
+actual output			12.26666666
+
+
+
+
+int id=sc.nextInt();			23
+String name=sc.nextLine();		Ram Kumar
+if(name.equals(""))	name=sc.nextLine();
+float marks=sc.nextFloat();
+
+If you use a separate scanner object for nextLine() alone. No problems.
+
+Write a java program to find the occurrance of each letter in a sentence.
+
+Sample Input:
+this line is typed by me for example
+
+Sample Output:
+t	2
+h	1
+i	3
+s	2
+ 	7
+l	2
+n	1
+e	5
+y	2
+p	2
+d	1
+b	1
+m	2
+f	1
+o	1
+r	1
+x	1
+a	1
+
+
+Map has Entries		what is an Entry?		Entry has key, value
+
+put	key, value		is used to store or update the entry
+get	key	and returns the value		return null if key is not found in the map
+
+
+
+
+

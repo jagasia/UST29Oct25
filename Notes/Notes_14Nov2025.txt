@@ -1,0 +1,177 @@
+What are the limitations of Arrays?
+	Fixed length
+	You should know the length of the array priorly, ie., before start using.
+	Contiguous memory location
+	Insertion and Deletion may require shifting elements
+
+
+We need datastructures that addresses these.
+
+java.util package provides the datastructures called as "Collections".
+
+Category of collections:
+	List
+		allows duplicate
+		Ordered		is not asc or desc order.
+				Order => The order in which the elements are added.
+
+	
+	Set
+		DISTINCT.		Set rejects duplicates.
+		Un Ordered means? random?
+		my opinion. Set elements order is decided by the type of set.
+			HashSet
+				the order is decided by 
+					hashCode() and equals() method
+
+			TreeSet
+				the order is decided by
+					Comparable or Comparator
+
+			LinkedHashSet
+				this is ordered.
+
+Map
+
+
+
+
+
+
+Employee e1=new Employee(1, "Raja");
+Employee e2=new Employee(1, "Ravi");
+
+
+
+
+set.add(e1);
+set.add(e2);
+
+//what happens?
+
+
+
+List
+-----
+	ArrayList
+	LinkedList
+	Vector
+	Stack
+	
+
+
+
+Vector, Stack and many are legacy classes	are synchronized
+
+Hashtable
+
+
+List supports
+	Collections.sort() method		(this method does not work for Set category classes)
+	ListIterator
+
+
+Iterator
+	is used to iterate/ traverse 
+	traverse means, visit every element in the collection.
+	
+	Iterator can be used on List or Set
+
+	But ListIterator is only for List			not for Set
+
+
+	Iterator has only 3 methods:
+		hasNext()		true if there is any more element to visit
+		next()		returns the next element. And it consumes. 
+		remove()		remove the current element
+
+
+
+
+
+
+
+
+
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class App3 {
+
+	public static void main(String[] args) throws ParseException {
+		List<Product> list=new ArrayList<>();
+		//dd-MMM-yyyy
+		list.add(new Product(15L, "Pencil", "Stationary", "11-Nov-2025"));
+		list.add(new Product(1L, "Pen", "Stationary", "04-Nov-2025"));
+		list.add(new Product(12L, "Sharpner", "Stationary", "14-Sep-2025"));
+		list.add(new Product(31L, "Eraser", "Stationary", "14-Nov-2024"));
+		list.add(new Product(14L, "Scale", "Stationary", "14-Nov-2000"));
+		list.add(new Product(55L, "Special Laddu", "Food", "13-Nov-2025"));
+		list.add(new Product(16L, "Veg Fried rice", "Food", "14-Nov-2025"));
+		list.add(new Product(7L, "Malabar Parotta", "Food", "14-Nov-2025"));
+		
+//		for(Product p:list) {
+//			if(p.getId().equals(14L))
+//				list.remove(p);
+//			else
+//				System.out.println(p);
+//		}
+		
+		
+		Iterator<Product> it = list.iterator();
+		while(it.hasNext()) {
+			Product p = it.next();
+			if(p.getId().equals(14L))
+				it.remove();
+			else
+				System.out.println(p);
+		}
+	}
+
+}
+
+
+
+
+
+
+
+1) Sort by Id
+2) Sort by Id Desc
+3) Sort by Name
+4) Sort by MfgDate
+5) Sort by Category
+
+
+
+
+
+ListIterator
+	works only for List		(not for Set)
+	provides additional methods
+		previous()
+		hasPrevious()
+
+means, list iterator can be used to iterate in both directions.
+
+it=list.listIterator();
+while(it.hasNext())	it.next();
+
+while(it.hasPrevious())
+{
+	System.out.println(it.previous());
+}
+
+
+
+
+
+
+it=list.listIterator(list.size());
+
+
+Set
+----

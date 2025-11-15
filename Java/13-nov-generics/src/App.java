@@ -18,6 +18,10 @@ public class App {
 		System.out.println("Displaying all nodes.....");
 		list.traverse();
 		
+//		JLinkedList<? super Number> list2=new JLinkedList<>();
+//		list2.addNode(10);
+		
+		
 	}
 
 }
