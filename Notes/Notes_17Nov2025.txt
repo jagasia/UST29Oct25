@@ -1,0 +1,172 @@
+String is immutable. That means, we cannot change the contents of a String.
+
+public class App2 {
+
+	public static void main(String[] args) {
+		String str="stationery";
+		//can you replace e into a?
+		str=str.replace('e', 'a');
+		System.out.println(str);
+	}
+
+}
+
+
+The above code looks like it is updating the contents. But not actually. It returns a new String and never updates the string itself.
+
+toUpperCase()
+toLowerCase()
+substring()
+charAt()
+indexOf()
+split()
+replace()
+matches()
+
+
+
+
+RegEx		-	Regular Expression
+
+	i) check if the string matches given pattern or not		true/false
+	ii) extract all the portions of a string that matches a pattern
+
+
+
+
+
+2 portions of regex
+
+what?		how many time?
+
+
+[]		list of chars from which any one can match
+[0-9A-Za-z]	range of chars
+
+( )		grouping 
+\d		digits
+\s		space
+
+
+
+multiplicity
+
+*		0 or more
++		1 or more
+?		0 or 1
+
+|		
+
+
+^	$		start and end of reg ex
+
+{1,}
+
++
+
+
+\d
+
+
+[0-9]
+
+
+
+
+[aeiou]
+
+
+
+StringBuilder sb=new StringBuilder("Hello");
+sb.append(" ");
+String str="World");
+sb.append(str);
+
+
+	reverse()
+
+
+Check if a string is palindrome or not?
+	Malayalam
+	Mom
+	Dad
+	madam
+	mam
+	racecar
+
+String has matches() but StringBuilder does not have.
+
+
+
+123
+2
+34
+5
+1
+
+var arr=[123,2,34,5];
+
+
+
+1
+123
+2
+34
+5
+
+
+StringBuilder vs StringBuffer
+
+only difference is that StringBuffer is synchronized.
+
+what is meant by synchronized?
+	when multiple threads try to access one object at a time, they are allowed one by one.
+
+
+-------------------------------------------------------
+Accept 2 strings from the user. Check if they are anagrams.
+
+Anagrams are words made up of same set of characters, including the occurrence of those characters.
+
+Ex:
+	team
+	meat
+
+	tea
+	eat
+
+sort the chars and then check if they are equal
+
+
+
+import java.util.Arrays;
+
+public class AppAnagrams {
+
+	public static void main(String[] args) {
+		String str1="team";
+		String str2="meta";
+		
+		//convert the string into char array
+		char []arr1=str1.toCharArray();
+		char []arr2=str2.toCharArray();
+		
+		Arrays.sort(arr1);
+		Arrays.sort(arr2);
+		
+		String strSorted1=new String(arr1);
+		String strSorted2=new String(arr2);
+				
+		System.out.println(Arrays.equals(arr1, arr2));
+	}
+
+}
+
+
+-------------------------------------------------
+Email address validation.
+
+
+
+
+1) text area not visible in hands on for learners

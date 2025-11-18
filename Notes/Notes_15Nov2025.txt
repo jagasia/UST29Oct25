@@ -56,3 +56,19 @@ get	key	and returns the value		return null if key is not found in the map
 
 
 
+Product
+	id
+	name
+	category
+	price
+
+
+
+
+1: Add Product
+2: Update Product
+3: Remove Product
+4: Display all products
+5: Find Product by Id
+6: Find Products by Categories
+7: Find the count of products by Category
