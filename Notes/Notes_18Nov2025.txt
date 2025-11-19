@@ -139,3 +139,129 @@ public class Employee {
                ", salary=" + salary + "]";
     }
 }
+-----------------------------
+Thread
+----------
+	Light weight process
+	Process is heavy weight
+
+	What is the relationship between process and thread?
+		Process can contain threads
+		Thread is a part of process
+
+
+	What is a process?
+		is a running instance of a program.
+
+
+
+CPU allocates resources to each process.
+	time 		CPU time		2.8 * 1024 * 1024 * 1024 
+	memory
+
+
+Performance
+	effective utilization of resources
+
+
+Every process has at least 1 thread 
+	that thread is called as "main" thread
+
+
+	any threads we create, are child threads only
+
+
+
+
+1		0%
+2		50%
+3		66%
+4		75%
+
+Optimal use of multi-threading have impact on performance
+
+before multi core 
+
+	concurrency
+
+now
+	parallelism
+
+
+Lets create threads.
+
+	1) implements Runnable
+	2) extends Thread
+
+
+
+class Two implements Runnable{
+	public void run(){
+		for(int i=0;;i++){
+			System.out.println(Thread.currentThread().getName()+"\t"+i);
+		}
+	}
+}
+
+
+--------------------------------------------------------------------------
+Threads
+
+
+
+class MyThread extends Thread{
+	public void run(){
+	}
+}
+
+
+Life cycle states
+------------
+New Thread state			when you create an object of Thread class
+Runnable				when you start the thread
+Not Runnable			when waiting, sleeping, blocked
+Dead				i) when the work is complete ii) the process that contains the thread is dead, iii) null is assiged to the thread
+
+
+
+Thread priorities
+	NORMAL		5
+		1 to 10
+		
+Monitor
+
+Synchronization
+----------------------
+
+
+
+
+public class App {
+
+	public static void main(String[] args) throws InterruptedException {
+		FibanocciGenerator t1=new FibanocciGenerator("Thread 1", 20);
+		FibanocciGenerator t2=new FibanocciGenerator("Thread 2", 20);
+		FibanocciGenerator t3=new FibanocciGenerator("Thread 3", 10);
+		FibanocciGenerator t4=new FibanocciGenerator("Thread 4", 10);
+		
+		t1.start();
+		t2.start();
+//		t2.join();			//
+		t3.start();
+		t3.join(); 			//
+		t4.start();
+	}
+
+}
+
+
+
+
+
+
+
+
+synchronized block
+synchronized method
+volatile	int i;				//thread will not cache them. Always access from main memory
+
