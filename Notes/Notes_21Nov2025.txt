@@ -1,0 +1,110 @@
+Log4j
+SLF4j
+
+
+
+CSV to Bean
+
+Java Bean
+-------------
+	a component developed in java language
+
+
+
+Sanjay Kumar Vs
+Priyanka D
+Shree Mahalakshmi
+Harini
+Kavipriya
+Niranj
+Gokul K	(very late)
+Arul	(very late)
+
+
+
+
+
+--------------------------
+Exception
+	is an unexpected event occurred during runtime
+
+syntax error
+compilation error
+runtime exception		(not error)
+
+
+
+
+Object
+	Throwable
+		Error
+		Exception
+			RuntimeException
+
+
+Checked Exception
+	InterruptedException
+		Thread.sleep, join etc
+	ConcurrentModificationException
+	FileNotFoundException
+		
+	
+
+	java compiler will be able to notice these exceptions and the compiler will expect you to either
+		use try catch blocks (or)
+		use throws clause
+	you can create a checked exception class by extending Exception or any exception class already there but not RuntimeException
+
+Unchecked Exception
+	all classes directly or indirectly derived from RuntimeException are unchecked exception.
+
+	ArrayIndexOutOfBoundsException
+	NullPointerException
+	
+
+
+try{}	block		is a guarded section. 		runtime exceptions that occur, can be handled using catch.
+
+
+exception propagation
+
+	
+
+
+try
+{
+
+}
+
+
+try(if you declare any object here, then it is scoped to this block only)
+{
+}
+catch()	///optional
+
+
+
+
+try block cannot be alone
+
+try
+{
+}catch(){}
+
+
+
+try{
+}finally{}
+
+
+
+
+finally
+	is executed if try is executed.
+	no matter if exception occurred or not, 
+		handled or not
+
+catch(Exception ex){}
+catch(SQLExcetion ex2){}		//unreachable code
+
+------------------------------------------------------

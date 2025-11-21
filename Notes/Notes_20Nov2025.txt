@@ -1,0 +1,446 @@
+Drawbacks of multi-threading
+	race condition		we cannot predict which thread will win first
+	dead lock			a thread waits for another thread, alas that thread also waits for this thread
+	lock starvation		the work of thread is postponed or delayed because of its low priority
+
+
+
+int i=3;
+int j=2;
+float f=(float)(i/j);
+
+
+
+test case 
+
+sample input:
+5
+
+sample output:
+0,1,1,2,3
+
+
+0,1,1,2,3
+
+
+boolean isFirst=true;
+
+if(!isFirst)
+{
+	print ,
+}
+isFirst=false;
+
+
+
+
+Employee employee;
+
+
+
+if(true){
+	System.out.println("true part");
+}else
+
+
+
+
+Lovely, let’s turn executors into something that actually feels friendly instead of scary 😄
+I’ll cover for each type:
+
+> i) Introduction
+> ii) Easy explanation
+> iii) Syntax (template)
+> iv) Example code
+> v) Explanation of the code
+
+I’ll do this for the **main ones you saw**:
+
+1. `newSingleThreadExecutor`
+2. `newFixedThreadPool`
+3. `newCachedThreadPool`
+4. `newScheduledThreadPool`
+5. `Callable` + `Future`
+
+---
+
+## 1. `Executors.newSingleThreadExecutor()`
+
+### i) Introduction
+
+This creates an executor that uses **only one thread** to run all tasks.
+Tasks are executed **one after another**, in the order they are submitted.
+
+---
+
+### ii) Easy explanation
+
+Imagine you have just **one worker** and many tasks.
+You give them tasks one by one.
+They never do two tasks at the same time, but at least your main program is free.
+
+Good when you want background work, but still want **strict order**.
+
+---
+
+### iii) Syntax
+
+```java
+ExecutorService executor = Executors.newSingleThreadExecutor();
+
+executor.submit(runnableTask);
+
+// when done
+executor.shutdown();
+```
+
+---
+
+### iv) Example code
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class SingleThreadExecutorExample {
+    public static void main(String[] args) {
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        executor.submit(() -> {
+            System.out.println("Task 1 running on: " + Thread.currentThread().getName());
+        });
+
+        executor.submit(() -> {
+            System.out.println("Task 2 running on: " + Thread.currentThread().getName());
+        });
+
+        executor.shutdown();
+    }
+}
+```
+
+---
+
+### v) Explanation of the code
+
+* `newSingleThreadExecutor()` creates an executor with **one worker thread**.
+* `submit(() -> { ... })` sends a task (a lambda `Runnable`) to that worker.
+* Tasks 1 and 2 will run on the **same thread**, one after the other.
+* `shutdown()` tells the executor “no more new tasks, finish what you have and then stop”.
+
+---
+
+## 2. `Executors.newFixedThreadPool(int nThreads)`
+
+### i) Introduction
+
+This creates a pool with a **fixed number of threads**, for example 3.
+It reuses those threads to run many tasks.
+
+---
+
+### ii) Easy explanation
+
+Think of it as an office with **n employees**.
+If you have 10 tasks and only 3 employees, at most 3 tasks run at the same time.
+The rest wait in a queue.
+
+Good for **controlled parallelism** without creating too many threads.
+
+---
+
+### iii) Syntax
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+
+executor.submit(runnableTask);
+
+// after submitting all tasks
+executor.shutdown();
+```
+
+---
+
+### iv) Example code
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class FixedThreadPoolExample {
+    public static void main(String[] args) {
+
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        for (int i = 1; i <= 5; i++) {
+            int taskId = i;
+            executor.submit(() -> {
+                System.out.println("Task " + taskId + " executed by "
+                        + Thread.currentThread().getName());
+            });
+        }
+
+        executor.shutdown();
+    }
+}
+```
+
+---
+
+### v) Explanation of the code
+
+* `newFixedThreadPool(3)` creates **3 worker threads**.
+* The loop submits 5 tasks.
+
+  * At any time, up to **3 tasks run in parallel**.
+  * The remaining tasks wait until a thread is free.
+* `taskId` is captured as a final variable (using `int taskId = i;`) so each task prints its own correct id.
+* `shutdown()` closes the pool after all submitted tasks are done.
+
+---
+
+## 3. `Executors.newCachedThreadPool()`
+
+### i) Introduction
+
+Creates a thread pool that **creates new threads as needed**, and reuses idle ones.
+Unused threads are removed after some idle time.
+
+---
+
+### ii) Easy explanation
+
+Think of it as a flexible team.
+If many tasks arrive suddenly, it hires more temporary workers.
+If it gets quiet, it lets them go.
+
+Good for **many short-lived tasks** where the number of tasks can vary a lot.
+
+---
+
+### iii) Syntax
+
+```java
+ExecutorService executor = Executors.newCachedThreadPool();
+
+executor.submit(runnableTask);
+
+executor.shutdown();
+```
+
+---
+
+### iv) Example code
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class CachedThreadPoolExample {
+    public static void main(String[] args) {
+
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        for (int i = 1; i <= 10; i++) {
+            int taskId = i;
+            executor.submit(() -> {
+                System.out.println("Running task " + taskId + " on "
+                        + Thread.currentThread().getName());
+            });
+        }
+
+        executor.shutdown();
+    }
+}
+```
+
+---
+
+### v) Explanation of the code
+
+* `newCachedThreadPool()` creates a **dynamic** pool.
+* When 10 tasks are submitted:
+
+  * If there are enough idle threads, it reuses them.
+  * Otherwise, it creates new threads on demand.
+* Great when tasks are small and you don’t want a long queue.
+* `shutdown()` says “no more tasks, finish the existing ones”.
+
+---
+
+## 4. `Executors.newScheduledThreadPool(int nThreads)`
+
+### i) Introduction
+
+A scheduled executor lets you run tasks:
+
+* after a **delay**
+* **periodically**, at fixed intervals
+
+---
+
+### ii) Easy explanation
+
+This is like an **alarm system** for tasks.
+You can say:
+
+* “Run this 2 seconds later”
+* “Run this every 3 seconds, starting 1 second from now”
+
+Great for timers, periodic cleanup, polling, etc.
+
+---
+
+### iii) Syntax
+
+```java
+ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(nThreads);
+
+// run once after delay
+scheduler.schedule(runnableTask, delay, timeUnit);
+
+// run repeatedly
+scheduler.scheduleAtFixedRate(runnableTask, initialDelay, period, timeUnit);
+```
+
+---
+
+### iv) Example code
+
+```java
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class ScheduledExecutorExample {
+    public static void main(String[] args) {
+
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+
+        // Run once after 2 seconds
+        scheduler.schedule(() -> {
+            System.out.println("Delayed task executed");
+        }, 2, TimeUnit.SECONDS);
+
+        // Run repeatedly every 3 seconds, starting after 1 second
+        scheduler.scheduleAtFixedRate(() -> {
+            System.out.println("Repeating task: " + System.currentTimeMillis());
+        }, 1, 3, TimeUnit.SECONDS);
+
+        // Note: usually you keep scheduler running; don't shutdown immediately
+    }
+}
+```
+
+---
+
+### v) Explanation of the code
+
+* `newScheduledThreadPool(2)` creates 2 worker threads for scheduled tasks.
+* `schedule(...)`
+
+  * Runs the given task **once** after 2 seconds.
+* `scheduleAtFixedRate(...)`
+
+  * Starts after 1 second.
+  * Then runs again every 3 seconds, regardless of how long each run takes (within reason).
+* Typically, you might **not** call `shutdown()` immediately, because you want periodic tasks to continue.
+
+---
+
+## 5. `Callable<V>` and `Future<V>`
+
+### i) Introduction
+
+`Callable` is like `Runnable`, but it **returns a value** and can **throw checked exceptions**.
+`Future` is a handle you get when you submit a `Callable`, which lets you:
+
+* get the result
+* check if it’s done
+* cancel it
+
+---
+
+### ii) Easy explanation
+
+You send someone to do a job and bring something back.
+You get a **token** (Future) that represents that job.
+Later, you say: “Give me the result of that job” (`future.get()`).
+
+Perfect when your background task needs to compute and return something.
+
+---
+
+### iii) Syntax
+
+```java
+ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+
+Callable<ResultType> task = () -> {
+    // do work
+    return someResult;
+};
+
+Future<ResultType> future = executor.submit(task);
+
+ResultType result = future.get(); // waits if necessary
+
+executor.shutdown();
+```
+
+---
+
+### iv) Example code
+
+```java
+import java.util.concurrent.*;
+
+public class CallableExample {
+    public static void main(String[] args) throws Exception {
+
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        Callable<Integer> task = () -> {
+            // simulate some work
+            Thread.sleep(1000);
+            return 42;
+        };
+
+        Future<Integer> future = executor.submit(task);
+
+        System.out.println("Waiting for result...");
+        Integer result = future.get();   // blocks until result is ready
+        System.out.println("Result = " + result);
+
+        executor.shutdown();
+    }
+}
+```
+
+---
+
+### v) Explanation of the code
+
+* `Callable<Integer>` defines a task that returns an `Integer`.
+* Inside `call()` (hidden by lambda) it waits 1 second and returns `42`.
+* `executor.submit(task)`:
+
+  * Runs the task in a thread pool.
+  * Returns a `Future<Integer>` object.
+* `future.get()`:
+
+  * Waits until the task is complete.
+  * Then gives you the returned value `42`.
+* `executor.shutdown()` closes the pool after tasks finish.
+
+---
+
+If you tell me **which one you want to master first for your use case** (like: “I want to run API calls in parallel”, or “I want a periodic health-check task”), I can tailor:
+
+* a mini “pattern” for that use case
+* common mistakes to avoid
+* and how you might use it in a real project (like your VS Code + Firebase setup) 💻🔥
+
+
