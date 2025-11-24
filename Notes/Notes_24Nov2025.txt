@@ -90,3 +90,113 @@ json
 JAX		Java API for XML
 SAX		Simple API for XML
 
+
+
+
+Less than 1 minute late:-
+---------------------------------
+Malathi
+Dhatchayani
+Gokul K
+Jobin
+Harini
+Tresina
+Gokul C
+Shree Mahalakshmi
+Kavipriya
+
+More than 1 minute late:-
+---------------------------------
+Niranj		
+Arul V
+
+3 minutes late:-
+---------------------
+Mythreyan
+Ashok
+
+
+
+
+
+DOM
+	Document Object Model
+		is used to represent a document in the memory as an Object.
+
+	XML document is now represented as a tree structure 
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<library>    
+<book id="1">        
+<title>Java Programming</title>        
+<author>John Doe</author>        
+<year>2020</year>    
+</book>    
+<book id="2">        
+<title>Effective Java</title>        
+<author>Joshua Bloch</author>        
+<year>2018</year>    
+</book>
+</library>
+
+
+import javax.xml.parsers.DocumentBuilder;import javax.xml.parsers.DocumentBuilderFactory;import org.w3c.dom.Document;import org.w3c.dom.Element;import org.w3c.dom.Node;import org.w3c.dom.NodeList;import java.io.File;public class DomParserDemo {    public static void main(String[] args) {        try {            File xmlFile = new File("books.xml");            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();            Document doc = dBuilder.parse(xmlFile);            doc.getDocumentElement().normalize();            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());            NodeList bookList = doc.getElementsByTagName("book");            for (int i = 0; i < bookList.getLength(); i++) {                Node bookNode = bookList.item(i);                System.out.println("------------------------");                if (bookNode.getNodeType() == Node.ELEMENT_NODE) {                    Element bookElement = (Element) bookNode;                    System.out.println("Book ID : " + bookElement.getAttribute("id"));                    System.out.println("Title : " + bookElement.getElementsByTagName("title").item(0).getTextContent());                    System.out.println("Author : " + bookElement.getElementsByTagName("author").item(0).getTextContent());                    System.out.println("Year : " + bookElement.getElementsByTagName("year").item(0).getTextContent());                }            }        } catch (Exception e) {            e.printStackTrace();        }    }}
+
+
+
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import java.io.File;
+
+public class DomParserDemo {
+	public static void main(String[] args) {
+		try {
+			File xmlFile = new File("books.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(xmlFile);
+			doc.getDocumentElement().normalize();
+			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+			NodeList bookList = doc.getElementsByTagName("book");
+			for (int i = 0; i < bookList.getLength(); i++) {
+				Node bookNode = bookList.item(i);
+				System.out.println("------------------------");
+				if (bookNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element bookElement = (Element) bookNode;
+					System.out.println("Book ID : " + bookElement.getAttribute("id"));
+					System.out.println("Title : " + bookElement.getElementsByTagName("title").item(0).getTextContent());
+					System.out
+							.println("Author : " + bookElement.getElementsByTagName("author").item(0).getTextContent());
+					System.out.println("Year : " + bookElement.getElementsByTagName("year").item(0).getTextContent());
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+{
+"name":"Gokul",
+"address":{
+	"dno":123,
+	"street":"Raja street",
+	"city":"Theni"
+	},
+"interests":["Java","Oracle","Spring"]
+}
