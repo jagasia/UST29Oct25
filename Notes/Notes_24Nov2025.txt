@@ -1,0 +1,92 @@
+JSON & XML Parsing
+
+These are data interchange formats.
+
+
+it is always text format (not binary)
+
+	csv
+	XML
+		
+
+1,Raja,ninety nine point 5
+2,Suresh,76.2
+3,Suba,100.0
+
+
+
+csv is never self explanatory. what is missing? Meta data
+
+
+XML
+	is a text based markup language
+	xml parsers are javascript programs that can validate the data inside the tags.
+
+<STUDENTS>
+	<STUDENT COURSE="IT">
+		<RNO>1</RNO>
+		<NAME>Raja</NAME>
+		<MARKS>99.5</MARKS>
+	</STUDENT>
+	<STUDENT>
+		<RNO>2</RNO>
+		<NAME>Raja</NAME>
+		<MARKS>99.5</MARKS>
+	</STUDENT>
+	<STUDENT>
+		<RNO>3</RNO>
+		<NAME>Raja</NAME>
+		<MARKS>99.5</MARKS>
+	</STUDENT>
+</STUDENTS>
+
+Interoperability
+
+
+
+Element			tag
+Attribute
+Entity
+Comment
+
+
+SGML
+	Standard Generalized Markup Language
+
+
+Well formedness Rules for XML:
+	A document can contain only 1 root element
+	Element (tags) must nest properly
+	XML is case sensitive
+		start tag and end tag must match in case.
+	attributes values must be in double quotes only
+
+
+
+
+
+JSON
+	JavaScript Object Notation
+
+{
+	"students":[
+		{"id":"1","name":"Raja","marks":"99.5"},
+		{"id":"2","name":"Raja","marks":"99.5"},
+		{"id":"3","name":"Raja","marks":"99.5"},
+	]
+}
+
+
+
+
+
+json
+	Google provides a java .jar file to convert java objects to json and vice versa.
+	Gson
+
+
+
+
+JAX		Java API for XML
+SAX		Simple API for XML
+

@@ -1,0 +1,16 @@
+HashMap
+	String, List<Integer> 
+
+Stream API 
+
+
+
+
+
+	Map<String, List<Integer>> productMap=new HashMap<String, List<Integer>();
+
+We have Product entity.
+	id
+	name
+	price
+	category
