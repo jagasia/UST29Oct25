@@ -1,0 +1,90 @@
+JUnit
+
+Testing
+---------
+	What is testing?
+		Testing the code with test cases
+
+	unit testing
+white box
+integration
+	black box
+system
+regression
+	functional			
+acceptance
+stress
+
+
+
+TDD - Test Driven Development
+	Write the code to fail
+	Modify the code to pass
+	Refactor the code
+
+Test cases
+	sample inputs
+	sample output for that
+
+Test suite
+	group of test cases
+
+
+
+
+@BeforeClass
+	a method with @BeforeClass annotation is executed before all the tests, and it is only once for the class.
+	this method must be a static method only.
+@AfterClass
+@Before
+	this method is called before every test method
+@After
+@Test
+	this is a test method
+
+
+Annotations
+	@Ignore
+Test Suites
+	Categorized
+	Parameterized
+
+
+
+-------------------------------------------
+Test Suite
+-------------
+	group of test cases
+
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+
+@RunWith(Suite.class)
+@SuiteClasses({MathematicsTest2.class, MathematicsTest3.class})
+public class MySuite {
+
+}
+
+
+
+
+Categorized suite
+	each category is an interface
+
+import org.junit.experimental.categories.Categories;
+import org.junit.experimental.categories.Categories.IncludeCategory;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Categories.class)
+@SuiteClasses({MathematicsTest.class,MathematicsTest2.class, MathematicsTest3.class})
+@IncludeCategory({Add.class})
+public class MyCategoriesSuite {
+
+}
+
+
+
