@@ -88,3 +88,111 @@ public class MyCategoriesSuite {
 
 
 
+----------------------------------------------------
+Mathematics
+	addNumbers()
+	multiplyNumbers()
+
+
+
+public class Mathematics {
+	private Integer no1;
+	private Integer no2;
+	private Float result=0.0f;
+	
+	public Mathematics() {}
+
+	public Mathematics(Integer no1, Integer no2, Float result) {
+		super();
+		this.no1 = no1;
+		this.no2 = no2;
+		this.result = result;
+	}
+
+	public Integer getNo1() {
+		return no1;
+	}
+
+	public void setNo1(Integer no1) {
+		this.no1 = no1;
+	}
+
+	public Integer getNo2() {
+		return no2;
+	}
+
+	public void setNo2(Integer no2) {
+		this.no2 = no2;
+	}
+
+	public Float getResult() {
+		return result;
+	}
+
+	public void setResult(Float result) {
+		this.result = result;
+	}
+	
+	public void addNumbers() {
+		this.result=(float) (no1+no2);
+	}
+	
+	public void multiplyNumbers() {
+		result=((float)no1*no2);
+	}
+	
+	
+}
+
+
+
+
+
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+@RunWith(Parameterized.class)
+public class MathematicsTest {
+	Mathematics maths=new Mathematics();
+	int no1=0;
+	int no2=0;
+	float result=0.0f;
+	
+	public MathematicsTest(int no1, int no2, float result) {
+		this.no1=no1;
+		this.no2=no2;
+		this.result=result;
+	}
+	
+	@Parameterized.Parameters
+	public static Collection parameters(){
+		return Arrays.asList(new Object[][] {
+			{2,3,5},
+			{5,3,8},
+			{120,3,123},
+			{4,9,13},
+			{40,9,49},
+			{1,9,10}
+		});
+	}
+	
+	@Test
+	public void test1() {
+		maths.setNo1(no1);
+		maths.setNo2(no2);
+		maths.addNumbers();
+		Float actual = maths.getResult();
+		float expected = result;
+		assertEquals(expected, actual,0);
+	}
+}
+
+
+
