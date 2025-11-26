@@ -196,3 +196,309 @@ public class MathematicsTest {
 
 
 
+----------------------------------------
+Mockito
+
+	A is creating web service 1
+B is creating web service 2
+	C is calling web service 1
+D is calling web service 2
+
+
+D has completed all their work. But calling web service 2 is pending.
+	D uses mockito. Now problem solved. How?
+		using mockito, D has mocked web service 2. And completed the portion of their project.
+
+
+
+
+
+
+1) i can continue testing my project, even if it is relying on another or any service.
+2) if that service is already tested, then i do not need to consume that service.
+
+Mock
+
+
+Maven
+
+Steps / lab setup for maven:
+
+download apache maven for windows from:
+
+
+
+pom		Project Object Model
+
+pom.xml
+
+
+maven provides many project templates.
+each one of them is an archetype
+	quick-start
+	webapp
+
+
+
+
+
+
+mvn archetype:generate \
+    -DgroupId=com.example.app \
+    -DartifactId=my-app \
+    -DarchetypeArtifactId=maven-archetype-quickstart \
+    -DarchetypeVersion=1.4 \
+    -DinteractiveMode=false
+
+
+mvn archetype:generate -DgroupId=com.ust.demo -DartifactId=gokul-app -DarchetypeArtifactId=maven-archetype-quickstart
+
+
+
+
+4.0.0
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ust.demo</groupId>
+	<artifactId>Shrisena</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Shrisena</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mockitoversion>4.0.0</mockitoversion>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>${mockitoversion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockitoversion}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Below is a **clear, complete, step-by-step guide** on how to create a **JUnit 4 + Mockito** project from scratch **using Maven**, write a test, fix all errors, and run the test successfully in Eclipse / STS.
+
+I’ll assume you want this setup:
+
+✔ Maven
+✔ Java project
+✔ JUnit 4
+✔ Mockito
+✔ MockitoJUnitRunner
+✔ Tests run without JUnit 5 errors
+
+---
+
+# ✅ **STEP 1 — Create a New Maven Project**
+
+### In Eclipse / Spring Tool Suite:
+
+1. **File → New → Maven Project**
+2. Check: **Create a simple project (skip archetype selection)** → **Next**
+3. Enter:
+
+   * **GroupId**: `com.ust.demo`
+   * **ArtifactId**: `Shrisena`
+   * Packaging: `jar`
+4. Finish.
+
+---
+
+# ✅ **STEP 2 — Add Dependencies in pom.xml**
+
+Replace the `<dependencies>` section with this:
+
+```xml
+<dependencies>
+
+    <!-- JUnit 4 -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- Mockito Core  -->
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>5.8.0</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- Mockito JUnit 4 Runner -->
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>5.8.0</version>
+        <scope>test</scope>
+    </dependency>
+
+</dependencies>
+```
+
+### Then:
+
+**Right-click project → Maven → Update Project (Alt+F5)**
+
+---
+
+# ✅ **STEP 3 — IMPORTANT: Ensure Eclipse Runs Tests Using JUnit 4**
+
+To avoid the error:
+
+> Cannot find org.junit.platform…Testable
+
+Do this:
+
+1. Right-click your test file → **Run As → Run Configurations**
+2. Under **JUnit**, select your test run config
+3. On the right, find **Test Runner**
+4. Select **JUnit 4**
+5. Apply → Run
+
+This guarantees Eclipse won’t use JUnit 5.
+
+---
+
+# ✅ **STEP 4 — Create the Source Class**
+
+Create file:
+
+`src/main/java/com/ust/demo/MathsService.java`
+
+```java
+package com.ust.demo;
+
+public class MathsService {
+
+    public int sum(int i, int j) {
+        return i + j;
+    }
+
+    public int difference(int i, int j) {
+        return Math.abs(i - j);
+    }
+}
+```
+
+---
+
+# ✅ **STEP 5 — Create the JUnit 4 + Mockito Test**
+
+Create file:
+
+`src/test/java/com/ust/demo/MathematicsTest.java`
+
+```java
+package com.ust.demo;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+@RunWith(MockitoJUnitRunner.class)
+public class MathematicsTest {
+
+    @Mock
+    MathsService proxy;
+
+    @Test
+    public void testSum() {
+        when(proxy.sum(2, 3)).thenReturn(5);
+        when(proxy.difference(2, 3)).thenReturn(1);
+
+        assertEquals(5, proxy.sum(2, 3));
+    }
+}
+```
+
+✔ `@RunWith(MockitoJUnitRunner.class)` requires **JUnit 4**
+✔ Mockito automatically initializes `@Mock`
+✔ No null pointer errors
+
+---
+
+# ✅ **STEP 6 — Run the Test**
+
+Right-click the file:
+**MathematicsTest.java → Run As → JUnit Test**
+
+Result should be:
+
+```
+Runs: 1   Errors: 0   Failures: 0
+```
+
+---
+
+# 🧩 **If You Still See JUnit 5 Errors**
+
+Add the JUnit 5 API to avoid IDE confusion:
+
+```xml
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-launcher</artifactId>
+    <version>1.10.0</version>
+    <scope>test</scope>
+</dependency>
+```
+
+This does **NOT** convert your test to JUnit 5 — it only removes IDE errors.
+
+---
+
+# 🎉 **You are done — JUnit 4 + Mockito is now fully working**
+
+If you want, I can also give you:
+
+✅ A full working GitHub-ready project
+✅ How to run the test from the command line
+✅ A version using JUnit 5 + MockitoExtension
+✅ Example with @InjectMocks
+
+Just tell me!
+
+
+

@@ -1,0 +1,208 @@
+1) Java coding standards - code quality
+2) measure the code quality of java code using Sonar Qube
+3) SQL
+
+
+
+Metrics of code quality
+	bugs
+	code smell
+	
+
+
+download sonarqube community build edition.
+Unzip into a folder
+
+ensure java version.
+
+\sonarqube-8.8.0.42792\bin\windows-x86-64
+
+in cmd
+
+StartSonar.bat
+
+this will start the service.
+
+in browser, open 		http://localhost:9000
+
+
+
+
+
+
+
+mvn sonar:sonar -Dsonar.projectKey=26-nov-sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=583d3b2be21e22bf1a5f4ec955e4690ac409cd97
+
+
+
+class A implements Predicate<Integer>
+{
+	public boolean test(Integer i){
+		return i>20;
+	}
+}
+
+
+.filter((i)->{	
+	return i>20;	
+})
+
+
+
+
+.forEach((x)->{
+
+System.out.println(x);
+
+});
+
+.forEach(System.out::println);
+
+
+
+
+SQL
+------
+	Structured Query Language
+
+
+is used to access a database in terms of
+	adding record(s)
+	updating records
+	deleting records
+	querying records from one or more tables or views or relations
+etc etc
+
+DML	Data Manipulation Language
+		INSERT
+		UPDATE
+		DELETE
+		
+DDL	Data Definition Language
+		CREATE
+		ALTER
+		DROP
+		TRUNCATE		
+
+DQL	Data Query Language
+		SELECT
+
+DCL	Data Control Language
+		GRANT
+		REVOKE
+
+TCL	Transaction Control Language
+		COMMIT
+		ROLLBACK
+		SAVEPOINT
+
+
+
+
+
+
+CREATE
+	is used for creating database objects
+EX:
+
+CREATE TABLE PRODUCT
+(
+	ID INT PRIMARY KEY,
+    NAME VARCHAR(20) NOT NULL,
+    PRICE DOUBLE,
+    CATEGORY VARCHAR(50)
+);
+
+
+ID	int(11)	NO	PRI		
+NAME	varchar(20)	NO			
+PRICE	double	YES			
+CATEGORY	varchar(50)	YES			
+
+
+
+CHAR(4)		means?			4 bytes
+NCHAR(4)				4 characters	
+
+
+
+alter table product add column description char(4);
+
+
+
+
+
+INSERT INTO PRODUCT VALUES (1,'Pencil',10,'Stationery','ABCD'), (1,'Pencil',10,'Stationery','ABCD'), (1,'Pencil',10,'Stationery','ABCD');
+
+INSERT INTO PRODUCT VALUES (2,'Sharpner',12,'Stationery','this','☺☻♥♦');
+
+☺☻♥♦
+
+
+
+alter table product add column desc2 nchar(4);
+
+
+mysql
+	tinyblob
+	mediumblob
+	longblob
+
+
+
+why truncate is DDL?
+	any ddl cannot be rolled back.
+
+
+
+
+
+
+Hashtags for the module 1 assessment:
+----------------------------------------------------
+Basic Programming Logic
+Data Filtering
+Java 8 Streams
+Linked Lists
+Problem Solving
+Java 8 Features
+Lambda Expressions
+---------------------------------------
+1) Question 1:
+Class Design
+Inheritance
+Java
+Programming
+Method Overriding
+Object-Oriented Programming
+Polymorphism
+
+2) Question 2:
+Class Implementation
+Core Java
+Getter and Setter Methods
+Object Initialization
+Object -Oriented Programming
+Set Data Structures
+
+3) Question 3:
+Console Applications
+Custom Exception
+
+4) Question 4:
+Console Applications
+Custom Exception
+Exception Handling
+Salary Calculation
+User Input Validation
+
+5) Question 5:
+Classes and Objects
+Constructors
+Encapsulation
+Methods
+User Input Handling
+
+
+
+
