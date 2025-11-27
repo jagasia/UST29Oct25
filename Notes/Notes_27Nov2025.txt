@@ -37,3 +37,74 @@ how can we do dependency injection?
 	using constructors
 
 
+
+--------------------------------------------
+What is Dependency Injection?
+	Whenever There is a "aggregation" or "composition" relationship between beans, DI is to be understood.
+
+What is tightly coupled, and loosely coupled?
+
+class Sony{
+}
+
+class Jbl{
+}
+
+class Car
+{
+	Sony sony;		//what is Sony? it is a class. So, it is tightly coupled. I cannot change it to Jbl
+}
+
+
+//now lets change this.
+
+interface Audio{
+}
+
+class Sony implements Audio{
+}
+
+class Jbl implements Audio{
+}
+
+class Car
+{
+	Audio audio;		//loosely coupled
+}
+
+
+types of DI?
+	setter based
+	constructor based
+
+
+Auto wiring
+-----------------
+	is a process of identifying dependencies and inject them automatically.
+
+
+
+
+
+
+
+
+
+
+Autowiring.
+	byName
+	byType		(default)
+
+
+
+
+Annotation based configuration
+	there are 2 ways you can mark a class as bean 
+		i) @Component
+		ii) @Bean
+
+
+@Component
+	
+
+
