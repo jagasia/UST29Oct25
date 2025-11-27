@@ -1,0 +1,39 @@
+Spring framework
+------------------------
+EJB	Enterprise Java Bean
+
+life cycle management of bean
+	construct
+	passivate
+	activate
+	destroy
+
+
+
+	default scope of the bean is "Singleton". we can change the scope to "Prototype"
+
+
+1) pom.xml
+  	<dependency>
+  	 <groupId>org.springframework</groupId>
+  	 <artifactId>spring-context</artifactId>
+  	 <version>6.2.10</version>
+  	</dependency>
+
+2) create xml configuration file
+
+
+
+
+
+
+This bean is dependent on 
+	id
+	name
+	color
+
+how can we do dependency injection?
+	using setters 	or
+	using constructors
+
+
