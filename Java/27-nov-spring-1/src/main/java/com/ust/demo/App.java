@@ -13,6 +13,7 @@ public class App
     	ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("spring.xml");
     	Vehicle v1 = ctx.getBean(Vehicle.class);
     	Vehicle v2 = ctx.getBean(Vehicle.class);
+    	Vehicle v3=(Vehicle) ctx.getBean("x");
     	
     	v1.setId(1);
     	v1.setName("Train");
