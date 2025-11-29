@@ -1,0 +1,101 @@
+- Why Spring Boot? - 
+	Auto-configuration, 
+	Starter dependencies - 
+	Creating a simple Spring Boot project
+- Application properties - Profiles (dev, test, prod) - Packaging & running Spring Boot apps (jar/war)
+
+
+
+when you run a spring boot application, it runs in 8080 by default.
+in case if it is not available, we get error:
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+
+
+Solution:
+
+1) Kill the process running in 8080
+	netstat -aon
+		this will show all processes running in all port and shows PID of them
+	taskkill /PID 5100 /F			(ensure you open command prompt as administrator)
+2) Run our app in a different port number like 8081 or 5000 etc
+	application.properties		(src/main/resources)
+		server.port=8081
+
+
+
+
+
+
+
+how to build a jar /war?
+	mvn clean install
+
+
+in pom.xml
+	<packaging>war</packaging>
+
+
+
+29-nov-boot-1-0.0.1-SNAPSHOT.war
+
+
+
+-----------------------------------------------
+Spring boot microservices
+	
+how to create a restful webservice?
+spring boot provides a solution for this.
+
+@RestController
+
+
+
+
+
+
+
+
+1) File -> New -> Spring starter project
+2) jar
+	maven
+	java
+	com.ust.demo
+	29-nov-rest-1
+	package name same as group id
+	java version 21
+	spring boot version 4
+
+dependencies:
+	spring web
+
+3) application.properties
+	server.port=8082
+
+4) right click base package 	(a class that has main method)
+	add new class
+		MyController.java			package name	com.ust.demo.controller
+
+	@RestController
+	public class MyController
+	{
+		@GetMapping	
+		public String home(){
+			return "Hello world";
+		}
+	}
+
+
+run the main method as java application.
+
+
+http://localhost:8082
+

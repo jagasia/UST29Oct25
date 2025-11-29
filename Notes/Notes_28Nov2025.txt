@@ -1,0 +1,73 @@
+Factorial
+Map<Integer, Long> map=new HashMap<>();
+Long factorial=1;
+for(int i=1;i<=n;i++){
+	factorial*=i;	
+	map.put(i,factorial);
+}
+
+
+
+interface Audio{
+	void play();
+}
+
+class Sony{
+	public void playMusic(){
+
+	}
+}
+
+main
+
+	Audio a=new Sony()::playMusic;
+
+	
+
+publiic class InvalidSalaryException extends Exception{
+	public InvalidSalaryException(String message){
+		super(message);
+	}
+}
+
+
+
+public void setSalary(Long salary) throws InvalidSalaryException{
+	if(salary<0)
+	{
+		throw new InvalidSalaryException("Salary is invalid");
+	}
+}
+
+
+Employee foundEmp=null;
+
+for(Employee e:empSet){
+	if(true)
+	{
+		foundEmp=e;
+		break;		
+	}
+}
+if(foundEmp!=nul)
+	empSet.remove(foundEmp);
+
+
+
+
+Spring boot
+----------------
+	works on spring layer
+	convention over configuration
+	zero xml
+	starter dependencies
+	opinionized annotations
+	built-in app servers like apache tomcat
+	
+@Component
+@Service
+@Repository
+@Controller
+
+
+

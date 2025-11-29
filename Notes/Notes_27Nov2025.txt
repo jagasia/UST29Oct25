@@ -108,3 +108,11 @@ Annotation based configuration
 	
 
 
+What is container?
+	is a special JVM
+	provides generic services
+
+What bean developer focuses?
+	writing code for application specific services.
+
+
