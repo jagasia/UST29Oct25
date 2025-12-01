@@ -1,0 +1,337 @@
+we create apis for others to call.
+
+so we need to follow the conventions.
+POST
+PUT
+DELETE
+GET
+
+Path Variable
+Request Param
+
+https://career.upskillit.com?uid=jagindia			request param
+https://career.upskillit.com/jagindia			path variable
+
+https://jsonplaceholder.typicode.com/todos
+
+GET		returns all the todos
+GET	/{id}	returns only todo with that id if present
+		here, id is a path variable
+POST		add a todo
+PUT	/{id}	update a todo
+
+
+
+
+@GetMapping
+@PostMapping
+
+
+
+
+	@RequestMapping(method = RequestMethod.GET)
+	public Integer add() {
+		return 0;
+	}
+
+
+
+
+
+	@GETMapping
+	public Integer add() {
+		return 0;
+	}
+
+
+
+
+REST principles:
+	Unified interface
+
+
+
+CRUD
+JPA
+microservices
+swagger
+
+Entity
+--------
+	a class that can be mapped to table(s) in the database.
+	ORM
+
+	data definition
+
+
+
+Product
+	id
+	name
+	category
+	price
+
+
+
+
+
+
+swagger dependency:
+----------------------------
+<dependency>
+  <groupId>org.springdoc</groupId>
+  <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+  <version>2.8.14</version>
+</dependency>
+
+
+
+
+restart and then 
+
+http://localhost:8086/swagger-ui/index.html
+
+-------------------------------------------------------
+JPA - Java Persistence Api
+
+
+Entity
+--------	
+	@Entity
+	@Table(name="PRD")
+	public class Product
+	{}
+
+
+
+
+.persist(product);
+
+
+.save(product);
+.delete(product);
+.save(product);
+
+
+managed entity
+detached entity
+	
+
+
+CrudRepository
+JpaRepository
+PagingAndSortingRepository
+
+Demo:
+---------
+entity:		Product
+repository:		ProductRepository			interface
+service:		ProductService
+controller:		ProductController
+
+
+
+
+
+
+
+spring web
+spring data jpa
+mysql driver
+
+
+
+
+ContractEmployee			CONTRACT_EMPLOYEE
+
+
+spring.application.name=01-nov-jpa-product
+
+server.port=5000
+
+spring.datasource.url=jdbc:mysql://localhost:3306/ust2025
+spring.datasource.username=root
+spring.datasource.password=
+
+spring.datasource.hikari.connection-timeout=20000
+spring.datasource.hikari.minimum-idle=5
+spring.datasource.hikari.maximum-pool-size=12
+spring.datasource.hikari.idle-timeout=300000
+spring.datasource.hikari.max-lifetime=1200000
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.id.new_generator_mappings = false
+spring.jpa.properties.hibernate.format_sql = false
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+
+
+
+
+
+
+package com.ust.demo.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Product {
+	private Integer id;
+	private String name;
+	private String category;
+	private Double price;
+	
+	public Product() {}
+	
+	public Product(Integer id, String name, String category, Double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.category = category;
+		this.price = price;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", category=" + category + ", price=" + price + "]";
+	}
+	
+	
+}
+
+
+
+package com.ust.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ust.demo.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+}
+
+
+
+package com.ust.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ust.demo.entity.Product;
+import com.ust.demo.repository.ProductRepository;
+
+@Service
+public class ProductService {
+	@Autowired
+	private ProductRepository pr;
+	
+	public Product create(Product product) {
+		return pr.save(product);
+	}
+	
+	public List<Product> read() {
+		return pr.findAll();
+	}
+	
+	public Optional<Product> read(Integer id) {
+		return pr.findById(id);
+	}
+	
+	public Product update(Product product) {
+		return pr.save(product);
+	}
+	public void delete(Integer id) {
+		pr.deleteById(id);
+	}
+	
+}
+
+
+
+
+package com.ust.demo.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.demo.entity.Product;
+import com.ust.demo.service.ProductService;
+
+@RestController
+@RequestMapping("/product")
+public class ProductController {
+	@Autowired
+	private ProductService ps;
+	
+	@PostMapping
+	public Product addProduct(@RequestBody Product product) {
+		return ps.create(product);
+	}
+	
+	@GetMapping
+	public List<Product> retrieveAllProducts() {
+		return ps.read();
+	}
+	
+	@GetMapping("/{id}")
+	public Product findProductById(@PathVariable("id")Integer id) {
+		Optional<Product> op = ps.read(id);
+		if(op.isPresent()) {
+			return op.get();
+		}
+		return null;
+	}
+	
+	@PutMapping("/{id}")
+	public Product updateProduct(@PathVariable Integer id,@RequestBody Product product) {
+		return ps.update(product);
+	}
+	
+	@DeleteMapping("/{id}")
+	public String deleteProduct(@PathVariable Integer id) {
+		ps.delete(id);
+		return "Deleted";
+	}
+	
+}

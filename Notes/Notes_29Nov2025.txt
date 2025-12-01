@@ -99,3 +99,81 @@ run the main method as java application.
 
 http://localhost:8082
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	WICAVX
+
+
+
+1) Kiruthika helped Niveditha
+
+HTTP Methods
+---------------------
+GET			retrieve/get		read
+PUT			update a resource/		update
+POST			add a new resource/		create
+DELETE			delete a resource		delete
+PATCH			update a part of resource	update
+
+
+
+
+GET
+	in browser's address bar, whatever URL you enter, is making a GET request.
+
+
+
+GET http://localhost:8082/
+
+
+
+
+<form method="POST" action="/hello">
+	<input type="submit" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
