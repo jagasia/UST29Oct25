@@ -13,43 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ust.demo.entity.Product;
-import com.ust.demo.service.ProductService;
+import com.ust.demo.model.Department;
+import com.ust.demo.service.DepartmentService;
 
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/department")
+public class DepartmentController {
 	@Autowired
-	private ProductService ps;
+	private DepartmentService ps;
 	
 	@PostMapping
-	public Product addProduct(@RequestBody Product product) {
-		return ps.create(product);
+	public Department create(@RequestBody Department department) {
+		return ps.create(department);
 	}
 	
 	@GetMapping
-	public List<Product> retrieveAllProducts() {
+	public List<Department> read() {
 		return ps.read();
 	}
 	
 	@GetMapping("/{id}")
-	public Product findProductById(@PathVariable("id")Integer id) {
-		Optional<Product> op = ps.read(id);
-		if(op.isPresent()) {
-			return op.get();
-		}
-		return null;
+	public Optional<Department> read(@PathVariable Integer id) {
+		return ps.read(id);
 	}
 	
 	@PutMapping("/{id}")
-	public Product updateProduct(@PathVariable Integer id,@RequestBody Product product) {
-		return ps.update(product);
+	public Department update(@PathVariable Integer id, @RequestBody Department department) {
+		return ps.update(department);
 	}
 	
 	@DeleteMapping("/{id}")
-	public String deleteProduct(@PathVariable Integer id) {
+	public String delete(@PathVariable Integer id) {
 		ps.delete(id);
-		return "Deleted";
+		return "delete'd";
 	}
+	
 	
 }

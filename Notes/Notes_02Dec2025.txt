@@ -73,4 +73,38 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 
 
+ResponseEntity
+
+
+JPA Relationships
+------------------------
+1 to 1
+1 to Many
+Many to 1
+Many to Many
+
+
+
+Customer Purchase Product
+
+
+Customer	Account
+
+
+1 to Many
+
+
+1	Department	has	many	Employee
+
+
+
+
+
+
+CUSTOMER
+PRODUCT
+SALES
+	CID
+	PID
+
 
