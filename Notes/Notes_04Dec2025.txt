@@ -1,0 +1,6 @@
+JPAQL
+	Query
+	Native Query
+	Named Query
+
+Validations

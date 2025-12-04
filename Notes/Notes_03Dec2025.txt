@@ -1,0 +1,52 @@
+RestTemplate
+ResponseEntity
+ManyToMany
+
+
+ResponseEntity
+
+Microservices
+--------------------
+	a set of restful webservices can be called as microservices, if they
+		can interact with eachother
+		can balance the load among themselves
+
+
+1) interact with eachother
+	Feign client		(spring cloud)
+	Rest Template		(spring boot)
+	HttpClient			(java 11 onwards)
+
+2) Load Balancing
+	client side
+	server side
+
+3) Circuit Breaker
+	break the circuit when failure
+	use fallback method
+
+4) Services monitor
+	Eureka server and client	(spring cloud)
+
+5) API Gateway
+	unified interface for all services
+
+	http://localhost:8080/product	=>		http://localhost:5001/product
+	http://localhost:8080/customer	=>		http://localhost:5002/customer
+	http://localhost:8080/sales	=>		http://localhost:5003/sales
+
+
+	public double getHours(Scanner sc){
+		double d=sc.nextDouble();
+		if(d<0 || d>168){
+			throw new 
+		}
+		return d;
+	}
+
+
+--------------------------------------
+Many To Many
+
+CUSTOMER
+PRODUCT
