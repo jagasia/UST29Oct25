@@ -4,3 +4,107 @@ JPAQL
 	Named Query
 
 Validations
+
+
+Late comers after lunch:
+
+
+the above list taken at 13:50
+------------------------------------
+@Transactional
+
+What is transaction?
+	Atomicity
+	C
+	I
+	D	
+
+
+
+
+Product
+	id
+	name
+	price
+	stock		
+
+Sales
+	id
+	sdate
+	pid
+	qty
+
+
+
+INSERT INTO SALES..... 	10
+UPDATE PRODUCT SET	stock-qty
+
+
+
+-------------------------------------------------
+Command line runner
+
+
+public class MyRunner implements CommandLineRunner{
+
+
+@Override
+public void run(){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.ust.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.ust.demo.model.Product;
+import com.ust.demo.service.ProductService;
+
+@SpringBootApplication
+public class Application implements CommandLineRunner {
+	
+	private ProductService ps;
+	
+	public Application(ProductService ps) {
+		this.ps=ps;
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Override
+	public void run(String ...args) {
+		Product product=new Product();
+		product.setName("Water bottle");
+		product.setCategory("Fancy");
+		product.setPrice(100.0);
+		
+		Product res = ps.create(product);
+		if(res.getId()!=null) {
+			//success
+			System.out.println("Success");
+		}else {
+			System.out.println("Failure");
+		}
+		
+	}
+}
+
+
+
