@@ -1,0 +1,82 @@
+spring.datasource.url=jdbc:h2:mem:jag
+#spring.datasource.url=jdbc:h2:file:./data/sampledata
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+
+------------------------------------------
+Late comers after lunch (minimum 1 minute late)
+Priyanka D
+Fayaz Ahamed M
+Bharathan K
+Aswin A
+ShriSena
+
+
+
+
+
+
+CommandLineRunner
+	1) by modifying Spring boot application class
+		yesterday we made this class implements CommandLineRunner and override run method
+			run method takes argument of String ..args
+
+	2) we can create a configuration class and 
+
+package com.ust.demo.config;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.ust.demo.model.Product;
+import com.ust.demo.repository.ProductRepository;
+
+@Configuration
+public class MyConfiguration {
+
+	
+	
+	
+	@Bean
+	public CommandLineRunner cr(ProductRepository pr) {
+//		return new CommandLineRunner() {
+//			
+//			@Override
+//			public void run(String... args) throws Exception {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		};
+		return (args)->{
+			System.out.println("Hi this is command line runner.....Thanks to Shri Sena...");
+//			List<Product> products = pr.findAll();
+//			System.out.println(products);
+			Product product=new Product();
+			product.setName("Logitech Mouse");
+			product.setCategory("Electronics");
+			product.setPrice(500.0);
+			Product p = pr.save(product);
+			System.out.println("Product is added...Id is "+p.getId());
+			
+			System.out.println(pr.findById(p.getId()).orElse(null));
+			
+		};
+	}
+}
+
+
