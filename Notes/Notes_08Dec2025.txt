@@ -1,0 +1,21 @@
+Swagger
+	how we can allow users to upload files (photo/audio/video)
+		what are the options to store lobs? in entity class
+			byte[]		in mysql 	tinyblob, mediumblob, longblob
+			String		Base64 encoded string
+	
+
+
+
+
+For byte array:
+	in controller?
+		@PostMapping
+		public Product create(@RequestBody Product product){
+		}	//this is not possible in swagger, because, the frontend should do the file to byte[] part. That swagger wont.
+
+
+		@PostMapping
+		public Product create(@RequestPart Product product, MultiPartFile file){
+		}
+
