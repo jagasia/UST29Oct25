@@ -1,0 +1,52 @@
+Module 3:
+--------------
+Cloud Basics
+
+What is Cloud computing?
+	service
+
+
+
+Amazon
+	AWS
+Google
+	GCP
+Microsoft
+	Azure
+
+
+
+
+
+Storage services			google drive, dropbox, onedrive
+Compute services			provide runtime env 
+Network services			vpc
+
+
+private
+public
+hybrid
+
+
+
+
+
+
+Platform as a service
+Infrastructure as a service
+Software as a service
+	
+------------------------
+AWS
+
+login to aws management console.
+
+
+aws.amazon.com
+
+	root user
+	iam user
+
+
+
+

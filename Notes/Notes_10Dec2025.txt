@@ -1,0 +1,25 @@
+Elastic beanstalk
+RDS
+S3
+CI/CD
+
+
+Late comers after lunch break:
+1) Sarat Gautham	(13:53)
+2) Sanjay kumar K	(13:53)
+3) Sanjay V	(13:53)
+4) Sanjay Vs	(13:53)
+5) Priyanka D	(13:53)
+6) Arul Prathiksha	(13:53)
+
+
+
+-----------------------------------------------------
+
+RDS	-	Relational Database System
+
+
+
+S3
+	Simple Storage Service
+

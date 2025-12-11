@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            width: 350px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Product Details</h2>
+
+<div class="card">
+    <p><span class="label">ID:</span> <span id="id"></span></p>
+    <p><span class="label">Name:</span> <span id="name"></span></p>
+    <p><span class="label">Category:</span> <span id="category"></span></p>
+    <p><span class="label">Price:</span> $<span id="price"></span></p>
+    <img id="photo" src="" alt="Product Photo">
+</div>
+
+<script>
+    fetch("http://localhost:8081/product/2")
+        .then(response => response.json())
+        .then(product => {
+            // Fill text fields
+            document.getElementById("id").innerText = product.id;
+            document.getElementById("name").innerText = product.name;
+            document.getElementById("category").innerText = product.category;
+            document.getElementById("price").innerText = product.price;
+
+            // Convert Base64 string to image
+            if (product.photo) {
+                document.getElementById("photo").src = "data:image/png;base64," + product.photo;
+            } else {
+                document.getElementById("photo").alt = "No image available";
+            }
+        })
+        .catch(err => console.error("Error:", err));
+</script>
+
+</body>
+</html>

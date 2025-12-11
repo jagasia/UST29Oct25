@@ -19,3 +19,15 @@ For byte array:
 		public Product create(@RequestPart Product product, MultiPartFile file){
 		}
 
+
+
+
+
+-------------------------------------
+
+It is observed that the learners who focused on 2nd attempt, completely skipped day to day handson. 
+For example:
+1) Arun
+	on 05-Dec, done 1 handson. After that, did not do any handson till 08-Dec 4pm.
+2) Niranj
+	on 08-Dec, did not do any handson till 4pm (till now 0, for the day)
