@@ -1,0 +1,49 @@
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
+
+
+spring.security.user.name=niranj
+spring.security.user.password=niranj@123
+
+
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+
+@SpringBootApplication(exclude = {
+    SecurityAutoConfiguration.class,
+    UserDetailsServiceAutoConfiguration.class
+})
+public class Application { }
+
+
+
+
+
+
+
+Spring boot rest controller using jpa repositry h2 database CRUD. The coding question should have
+1) Relationships like One to Many
+2) A query
+3) A finder method
+
+There should be files for
+entities
+repositories
+services
+controllers
+
+all those files should not contain the code inside the type, and let the learners to write them based on the instructions provided.
+
+The controllers should insist using response entity with proper status codes like "created", "not found" etc.
+
+The question should demand the learners to use commandline runner to initialize the sample data (should be part of question).
+
+Note:
+Most of the annotations should be required to be used like 
+@JoinColumn, and use options like cascade, fetch, etc etc.

@@ -16,6 +16,11 @@ public class ProductController {
         this.productService = productService;
     }
 
+	@GetMapping("/niranj")
+	public String home(){
+		return "Hello.... Niranj welcomes you all";
+	}	
+
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();

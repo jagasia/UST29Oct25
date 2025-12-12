@@ -136,3 +136,25 @@ And that’s perfectly correct.
 * **Ignore JPA owning/inverse when deciding this.** They solve different problems.
 
 If you tell me your exact entity pair (like `Order`–`OrderItem` or `User`–`Role`), I can show you exactly where to place them in your code.
+
+
+
+Late comers after lunch:
+Arun
+Rishin
+Niranj		(2 minutes!)
+
+
+CI/CD
+	Continuous Integration/ Continous Delivery
+
+
+code pipeline
+	what are the 3 stages:
+		source
+			
+		build
+
+		deploy
+
+
