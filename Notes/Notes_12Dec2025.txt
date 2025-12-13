@@ -47,3 +47,55 @@ The question should demand the learners to use commandline runner to initialize 
 Note:
 Most of the annotations should be required to be used like 
 @JoinColumn, and use options like cascade, fetch, etc etc.
+
+
+
+public class Author{
+	Set<Book> books;
+
+
+	public void setBooks(Set<Book> books){		
+		this.books=books;
+	}
+	
+	public void addBook(Book book){
+		books.add(book);
+	}
+
+}
+
+
+
+
+
+
+AuthorService
+
+
+
+	how to add a book?
+
+
+
+		Set<Book> books=author.getBooks();
+		books.add(book);
+		author.setBooks(books);
+		as.save(author);
+
+
+
+
+
+{
+	"title":"You can win",
+	"price":105.5,
+	"author":{
+		"id":1
+	}
+}
+
+
+
+
+GET		http://localhost:8080/author/1
+
