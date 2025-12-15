@@ -1,0 +1,51 @@
+Once the trainer completes demo, almost 2/3rd of the learners go out for relaxation. Among the 1/3rd who stay in the room, few start sleeping (at 10 am in the morning).
+
+
+
+
+
+
+Where we left?
+	1) pom.xml
+		security dependency
+	2) MyConfiguration.java
+		@Configuration
+		@EnableMethodSecurity
+	
+		3 beans:
+			i) PasswordEncoder
+				we used NoOpPasswordEncoder.
+				today we will use BCryptPasswordEncoder
+			ii) UserDetailsService	
+				depends of PasswordEncoder bean
+			iii) AuthenticationProvider bean
+				depends on 
+					i) user details service bean
+					ii) password encoder bean
+
+when i signup, i enter
+	abcd
+
+it is encrypted into
+	1234
+
+
+
+
+when i login, i enter
+	abcd
+
+
+
+
+jagadees	=	$2a$12$qT/II4zz7EpVtHMwP447luFWv/NLqbdkuZvuKiBmKJuvbAxeqMbTO
+
+
+
+
+
+1) password encoder
+	bcrypt
+2) userdetails service
+3) controller
+
