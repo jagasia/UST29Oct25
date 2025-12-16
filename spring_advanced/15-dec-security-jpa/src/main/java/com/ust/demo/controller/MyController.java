@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class MyController {
 
 	@GetMapping
-	@PreAuthorize("hasAnyRole('USER','ADMIN')")
+	@PreAuthorize("hasAnyAuthority('USER','ADMIN')")
 	public String home() {
 		return "Welcome all";
 	}
 	
 	@GetMapping("/about")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String about() {
 		return "About us";
 	}
 	
 	@GetMapping("/contact")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasAuthority('USER')")
 	public String contact() {
 		return "Contact us";
 	}

@@ -1,0 +1,43 @@
+Spring cloud
+	eureka server and client		service discovery and monitoring
+	feign client				accessing other services
+	api gateway			uniform interface
+	load balancer	
+	circuit breaker
+	configuration
+
+Spring security
+	entity
+	repository
+	service
+
+
+	security filter chain
+		url is authenticated
+		url is permitted without authentication
+
+
+
+	AuthenticationManager
+		authenticate()	method
+	
+
+
+
+
+http://localhost:8080/product
+
+
+http://localhost:8080/api/v2/product
+
+
+http://localhost:8080/api/v1/login
+
+
+
+
+
+
+/api/v1/**
+
+-------------------------------------
