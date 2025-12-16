@@ -200,3 +200,64 @@ public class MessageController {
 
 
 
+==================================================================
+Eureka server and clients
+------------------------------------
+
+1) eureka server project
+2) many eureka client projects
+
+
+
+
+eureka server project steps:
+
+
+1) create a spring boot app
+
+	eureka-server
+
+		spring web
+		spring cloud eureka server
+
+	enable eureka server
+
+application.properties
+	eureka.client.registerWithEureka = false
+	eureka.client.fetchRegistry = false
+	server.port = 8761
+
+
+
+run the project
+
+
+http://localhost:8761
+
+------------------------
+in each webservice, we will register to that eureka server.
+
+
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+
+
+
+in application.properties
+
+eureka.instance.hostname=localhost
+eureka.client.serviceUrl.defaultZone=http://${eureka.instance.hostname}:8761/eureka/
+server.context-path=/product
+
+
+
+
+
+
+YAML
+	YAML AREN'T MARKUP LANGUAGE
+
+
