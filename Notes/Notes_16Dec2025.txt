@@ -41,3 +41,162 @@ http://localhost:8080/api/v1/login
 /api/v1/**
 
 -------------------------------------
+Spring cloud
+------------------
+
+Spring cloud config server
+
+Demo:
+
+we will create a folder in our computer
+
+
+1) we have created a spring boot app now, 
+		spring web
+		spring cloud cloud config server
+
+
+2) in main class:
+
+enable config server
+
+@EnableConfigServer
+
+
+3) in application.properties:
+
+spring.application.name=config-server
+
+server.port=8888
+spring.profiles.active=native
+spring.cloud.config.server.native.searchLocations=file:/D:/Jag/UST/Batch_29Oct25/all/niranj
+
+
+
+===============
+create product-service project
+
+
+	spring web
+	spring cloud cloud config client
+
+-------------------------
+
+
+1) create a folder or git repository.
+keep the configuration files here.
+Naming convention:
+	application.properties
+	{application name}-{active profile}.properties
+
+2) create a spring cloud config server.
+	this is a spring boot project only.
+		spring web
+		spring cloud - config server
+
+3) enable config server
+
+4) application properties:
+
+server.port=8888
+
+spring.application.name=config-server
+spring.profiles.active=native
+
+spring.cloud.config.server.native.searchLocations=file:/D:/jag/ust/Batch_29Oct25/all/todelc
+
+
+
+then run the server.
+native	=	local file system
+if spring.profiles.active is not set, it is default to git.
+But this is only in spring cloud config server. 
+
+in services, dev or prod or whatever we choose, will be used to choose from the corresponding configuration file using
+naming convention. Ex: order-service-dev.properties if 
+spring.application.name=order-service
+spring.profiles.active=dev
+
+what is a Spring profile?
+
+A profile is just a mode in which a Spring application runs.
+
+Examples:
+
+dev
+test
+prod
+native
+A profile activates certain beans and configuration paths.
+==================================================
+
+
+
+
+complete notes:
+
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+
+
+server.port=8888
+
+spring.application.name=config-server
+spring.profiles.active=native
+
+spring.cloud.config.server.native.searchLocations=file:/D:/jag/ust/Batch_29Oct25/all/todelc
+
+
+
+
+
+@EnableConfigServer
+
+----
+End of config server part.
+-------------------------------------------------------------------------------
+now in one of services.
+
+order-service.
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+
+server.port=8081
+spring.application.name=order-service
+spring.profiles.active=dev
+
+# This tells Spring Boot to import config from the Config Server
+spring.config.import=optional:configserver:http://localhost:8888
+
+
+
+
+package com.ust.demo;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MessageController {
+
+  @Value("${app.message:missing}")
+  private String message;
+
+  @GetMapping("/message")
+  public String message() {
+    return message;
+  }
+}
+
+
+
+
+
+
