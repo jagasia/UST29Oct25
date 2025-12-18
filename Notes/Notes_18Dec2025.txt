@@ -41,3 +41,79 @@ spring.cloud.discovery.client.simple.instances.demo-service[2].uri=http://localh
 
 
 
+
+
+-----------------------------
+Circuit breaker
+----------------------
+
+
+we will have a webservice.
+
+then we will call that webservice. If that webservice is not available, then we will have a fallback method to be executed.
+
+
+
+
+
+http://localhost:5000/api/v2/employee
+
+
+
+
+now, lets call this service from emp-client
+
+
+we will use RestTemplate
+
+
+
+
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aspectj</artifactId>
+  </dependency>
+
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+  </dependency>
+</dependencies>
+
+
+
+
+package com.ust.demo.controller;
+
+import org.jspecify.annotations.Nullable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Fallback;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+@RestController
+public class MyController {
+	@Autowired
+	private RestTemplate rt;
+
+	@GetMapping
+	@CircuitBreaker(name = "cb1", fallbackMethod = "fallbackMethod")
+	public String home() {
+		@Nullable
+		String res = rt.getForObject("http://localhost:5000/api/v2/employee", String.class);
+		
+		return "This is emp client home. The response received: "+res;
+	}
+	
+	@Fallback
+	public String fallbackMethod(Throwable t) {
+		return "This is fallback method...";
+	}
+}
+
+
+
+
