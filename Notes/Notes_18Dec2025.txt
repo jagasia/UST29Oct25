@@ -117,3 +117,73 @@ public class MyController {
 
 
 
+=====================================================
+spring security
+
+
+now, if successful login, we should return jwt.
+
+
+why jwt?
+what is it?
+how?
+
+JSON Web Token
+
+
+in our current project, we want to include jwt mean?
+	what?
+		we should return a jwt token on successful login.
+
+
+0) add the jwt dependencies in pom.xml
+	jjwt
+
+1) jwt filter	
+	filter will look for a header in each (auth) requests
+		what header?		Authorization
+
+2) jwt service/ jwt util
+	an utility class
+		create Token
+		validate token
+		extract username from the token
+
+3) in our configuration class, inside securityFilterChain,
+	we need to add filter
+
+
+4) in our controller, in our api/login
+
+	we have to return jwt token on successful login.
+
+
+
+
+
+
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.12.5</version>
+</dependency>
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.12.5</version>
+    <scope>runtime</scope>
+</dependency>
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <version>0.12.5</version>
+    <scope>runtime</scope>
+</dependency>
+
+
+
+
+
