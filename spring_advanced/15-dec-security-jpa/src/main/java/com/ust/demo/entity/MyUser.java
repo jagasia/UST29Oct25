@@ -9,7 +9,7 @@ public class MyUser
 	@Id
 	private String username;
 	private String password;
-	private String authorities;
+	private String authorities;	//ex:		USER,ADMIN
 	
 	public MyUser() {}
 

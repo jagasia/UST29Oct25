@@ -3,8 +3,10 @@ package com.ust.demo.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -37,10 +39,10 @@ public class MySecurityConfiguration {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    return http
-//	        .csrf(csrf -> csrf.disable())	        
-//	        .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+	        .csrf(csrf -> csrf.disable())	        
+	        .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/h2/**").permitAll()
+	            .requestMatchers("/h2/**","/signup","/api/login").permitAll()
 	            .anyRequest().authenticated()
 	        )
 	        .formLogin(form -> form
@@ -49,5 +51,10 @@ public class MySecurityConfiguration {
 	        .build();
 	}
 
+	
+	@Bean
+	public AuthenticationManager am(AuthenticationConfiguration config) {
+		return config.getAuthenticationManager();
+	}
 	
 }

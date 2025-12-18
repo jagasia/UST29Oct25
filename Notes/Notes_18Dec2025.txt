@@ -1,0 +1,43 @@
+Load Balancer
+
+mvn spring-boot:run
+	the service will run in which port number?
+		in the port we specified in the application.properties
+
+
+
+mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8085
+
+
+
+
+we already have
+	demo-service
+		running in 
+			8081
+			8082
+			8083
+
+
+now we will create
+	demo-client
+
+
+pom.xml
+	webflux			
+	spring cloud load balancer
+
+
+in application.properties, configure the suppliers.
+
+spring.application.name=demo-client
+
+server.port=5000
+
+spring.cloud.discovery.client.simple.instances.demo-service[0].uri=http://localhost:8081
+spring.cloud.discovery.client.simple.instances.demo-service[1].uri=http://localhost:8082
+spring.cloud.discovery.client.simple.instances.demo-service[2].uri=http://localhost:8083
+
+
+
+

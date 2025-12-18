@@ -1,0 +1,115 @@
+Spring cloud feign client?
+	open feign
+
+
+in microservices architecture, a restful webservice must be able to interact with other services.
+	interact?
+		get, post, put, delete, patch
+
+
+Demo:
+1) add the "open feign" dependency
+2) enable feign clients
+@SpringBootApplication
+@EnableFeignClients
+public class FeignClientDemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FeignClientDemoApplication.class, args);
+		System.out.println("Hello world");
+	}
+
+}
+
+3) create an interface
+package com.ust.demo.api;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.ust.demo.model.Employee;
+
+@FeignClient(name = "niraj-api",url = "http://localhost:8081/api/v2/employee")
+public interface EmployeeApi {
+
+	@PostMapping
+	public ResponseEntity<Employee> create(@RequestBody Employee employee) throws Exception;
+	
+	@GetMapping
+	public ResponseEntity<List<Employee>> read();
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Employee> read(@PathVariable("id") Long employeeId);
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody Employee employee) throws Exception;
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) throws Exception;
+}
+
+
+4) autowire this api in your controller or any component, and call the methods.
+
+
+
+--------------------------------------------------------
+Spring security
+------------------
+Spring boot 4
+Spring security 6
+
+
+
+pending:
+signup
+
+
+
+1) entity:
+	MyUser
+		username		pk
+		password
+		authorities
+
+
+
+roles
+	USER				ROLE_USER
+	ADMIN				ROLE_ADMIN
+
+
+authorities
+	USER				USER
+	ADMIN				ADMIN
+
+
+
+
+@PreAuthorize("hasRole('USER')")
+@PreAuthorize("hasAuthority('USER')")
+
+
+
+
+
+===============================================
+
+private final List<String> countries=new ArrayList<>();
+
+
+public void add(String country){
+	countries.add(country);		//is this possible?
+}
+
+
+
+

@@ -1,0 +1,57 @@
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+	<version>3.2.0</version>
+</dependency>
+
+
+
+
+package com.cts.demo.config;
+
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class MyConfiguration {
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate rt()
+	{
+		return new RestTemplate();
+	}
+}
+
+
+
+
+
+
+
+
+@Autowired
+@LoadBalanced
+private RestTemplate rt;
+
+@GetMapping("/{id}")
+@CircuitBreaker(name = "jag", fallbackMethod = "fallbackMethod")
+public String home(@PathVariable Integer id)
+{
+	//call rest api 1 and get the response.
+	Employee res=null;
+	res=rt.getForObject("http://localhost:8081/"+id, Employee.class);
+	return res.getName();
+}
+	
+public String fallbackMethod(Throwable throwable)
+{
+	return "This is fallbakc method";
+}

@@ -29,7 +29,9 @@ public class MyUserDetailsService implements UserDetailsService
 	@Autowired
 	private MyUserRepository repo;
 	
-	
+	public MyUserDetailsService(PasswordEncoder encoder) {
+		this.encoder=encoder;
+	}
 	
 		
 	@Override
@@ -50,5 +52,12 @@ public class MyUserDetailsService implements UserDetailsService
 		return user;
 	}
 
-	
+	public MyUser addUser(MyUser user) {
+//		String plainPassword = user.getPassword();
+//		String encodedPassword=encoder.encode(plainPassword);
+//		user.setPassword(encodedPassword);
+		
+		user.setPassword(encoder.encode(user.getPassword()));
+		return repo.save(user);
+	}
 }

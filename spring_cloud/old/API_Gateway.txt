@@ -1,0 +1,128 @@
+
+
+
+
+
+package com.ust.demo.config;
+
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MyConfiguration {
+
+	@Bean
+	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+	    return builder.routes()
+	      .route("r1", r -> r.host("**localhost:5000")
+		        .and()
+		        .path("/product")
+	        	        .uri("http://localhost:8081"))
+	      .route("r2", r -> r.host("**localhost:5000")
+	  	        .and()
+	  	        .path("/customer")
+	  	        .uri("http://localhost:8082"))
+	      .route("r3", r -> r.host("**localhost:5000")
+	  	        .and()
+	  	        .path("/order")
+	  	        .uri("http://localhost:8083"))
+	     
+	    .build();
+	}
+}
+
+
+
+
+
+//product service runs in 8081
+
+
+package com.ust.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
+@RequestMapping("/product")
+public class ProductServiceApplication {
+
+	@GetMapping
+	public String home() {
+		return "Welcome to Product service";
+	}
+	
+	public static void main(String[] args) {
+		SpringApplication.run(ProductServiceApplication.class, args);
+	}
+
+}
+
+
+
+
+
+
+//customer service runs in 8082
+
+package com.ust.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
+@RequestMapping("/customer")
+public class CustomerServiceApplication {
+
+	@GetMapping
+	public String home() {
+		return "Welcome to Customer service";
+	}
+	
+	public static void main(String[] args) {
+		SpringApplication.run(CustomerServiceApplication.class, args);
+	}
+
+}
+
+
+
+
+//order service runs in 8083
+
+package com.ust.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
+@RequestMapping("/order")
+public class OrderServiceApplication {
+
+	@GetMapping
+	public String home() {
+		return "Welcome to Order service";
+	}
+	
+	public static void main(String[] args) {
+		SpringApplication.run(OrderServiceApplication.class, args);
+	}
+
+}
+
+
+
