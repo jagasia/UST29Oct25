@@ -1,0 +1,56 @@
+API Gateway demo
+
+what is API gateway?
+	the concept is not to give real url to the users.
+	we provide only gateway/endpoint
+
+		gateway is translating the request to those relevant endpoints.
+
+
+Demo:
+	we will have 3 webservices
+		http://localhost:8081/product
+		http://localhost:8082/customer
+		http://localhost:8083/sales
+
+	we will create a gateway for providing access to the above.
+		http://localhost:5000
+
+			http://localhost:5000/product => 		http://localhost:8081/product
+
+
+
+
+steps for api gateway:
+
+1) create a spring boot application
+	not spring webmvc, we will use webflux		"Reactive Web"
+	spring cloud api gateway
+
+2) create a configuration class:
+	@Bean
+	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+		return builder.routes()
+		.route("product",r->r.path("/product/**").uri("http://localhost:8081"))
+		.route("customer",r->r.path("/customer/**").uri("http://localhost:8082"))
+		.route("sales",r->r.path("/sales/**").uri("http://localhost:8083"))
+		.build();
+	}
+
+
+3) application.properties:
+	server.port=5000
+
+
+
+
+
+run the gateway and check:
+
+	http://localhost:5000/product				http://localhost:8081/product
+	http://localhost:5000/customer				http://localhost:8081/customer
+	http://localhost:5000/sales				http://localhost:8081/sales
+
+
+
+
