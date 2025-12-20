@@ -54,3 +54,35 @@ run the gateway and check:
 
 
 
+=============================================================
+OAuth2
+	Open Authentication 2
+
+	we want to allow our users to login using OAuth2
+
+
+
+i will show you steps for allowing users to login using their
+	google
+	facebook
+	github
+
+
+
+1) create a spring boot app
+	spring web
+	spring security
+	oauth2 client
+
+
+2) create a config class
+	@Configuration
+	public class MyConfiguration
+	{
+				
+	}
+
+
+3) in application.properties
+
+	

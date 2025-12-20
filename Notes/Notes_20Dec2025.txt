@@ -1,0 +1,420 @@
+Docker
+---------
+containerization
+
+ECS		Elastic Container Service
+
+
+docker -v
+
+before installing docker, you should install WSL (Windows Subsystem for Linux)
+
+What is the difference between Virtual Machines and Containers?
+
+Virtualization vs Containerization
+
+Virtualization is heavy
+Containerization is light weight
+
+-------------------------
+
+docker 
+	images vs containers
+
+
+commands:
+docker image ls		same as 			docker images
+	list of images in our computer
+
+docker container ls		same as 			docker ps
+	list of containers in our computer
+
+docker rmi <<imageid>>		remove image
+
+docker rm <<containerid>>		remove container		-f 	force
+
+docker pull
+docker push
+docker tag
+docker network
+docker run
+
+
+docker compose up			run multiple containers in one command. as per docker-compose.yml
+
+
+
+
+lets run a docker image which is already present in hub.docker.com
+
+
+
+
+
+
+install docker for windows 
+	https://docs.docker.com/docker-for-windows/install/
+	after downloading 
+		Docker Desktop Installer.exe
+	execute the above downloaded file
+
+Restart computer
+
+update wsl:
+	Download the Linux kernel update package
+	https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+	execute it
+
+Restart computer
+
+To start docker:
+	systemctl start docker
+To create network:
+	docker network create employee-mysql
+To check the networks:
+	docker network ls
+
+experimental:true			(if error like cannot run linux)
+
+
+To check if virtualization is supported on Windows 8 and above, run the following command on your Windows terminal or command prompt.
+
+systeminfo
+If you see the following output, virtualization is supported on Windows.
+
+Hyper-V Requirements:     VM Monitor Mode Extensions: Yes
+                          Virtualization Enabled In Firmware: Yes
+                          Second Level Address Translation: Yes
+                          Data Execution Prevention Available: Yes
+If you see the following output, your system already has a Hypervisor installed and you can skip the next step.
+
+Hyper-V Requirements:     A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+
+
+
+--------------------------------
+Lets run an existing application in docker.
+1) open cmd / terminal
+2) 
+3) docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
+4) http://localhost:5000/hello-world
+	check this in a browser
+	(also)
+http://localhost:5000/hello-world-bean
+
+5) 
+	i) To check the running containers list
+		docker container ls
+	ii) To check all the containers list
+		docker container ls -a
+6) to kill a container
+	docker stop <<container-id>>
+	docker container stop <<container-id>>
+
+	stop vs kill	(stop gracefully. Kill immediately)
+
+7) to run a docker container in the background
+	docker run -p 5000:5000 -d in28min/todo-rest-api-h2:1.0.0.RELEASE
+8) to check the logs,
+	docker logs <<container-id>>
+	(also)
+	docker logs -f <<first 5 digits of container id>>
+9) docker images
+	to list the images
+-------------------------------------------
+=============================================
+Lets deploy our java application in docker
+visit:
+	hub.docker.com
+sign in and search 
+	openjdk
+
+under "how to use this image", you can find "start a java instance in your app"
+
+FROM openjdk:7
+COPY . /usr/src/myapp
+WORKDIR /usr/src/myapp
+RUN javac Main.java
+CMD ["java", "Main"]
+
+-----------
+go to pom.xml and add the following below the </plugins>
+	<finalName>docker-spring-jag</finalName>
+rebuild and create the jar/war
+
+FROM openjdk:8
+ADD target/docker-spring-jag.war docker-spring-jag.war		(local jar path & the container path.here it is root)
+EXPOSE 8085
+--------------------------------------=====================Dockerfile-------------------------
+FROM java:8
+
+EXPOSE 8080
+
+ADD target/docker-demo.jar docker-demo.jar
+
+ENTRYPOINT ["java","-jar","docker-demo.jar"]
+
+
+
+
+To find the ip address of docker container
+	docker container inspect container_name_or_ID
+
+------------------------------------
+To create a docker image without using Dockerfine	(for spring boot applications)
+	mvn spring-boot:build-image
+
+
+
+
+
+
+http://localhost:5000/users/in28minutes/todos
+
+http://localhost:5000/hello-world
+
+
+
+
+
+
+-------------------------------------------
+easy way to create a docker image of a spring boot maven application
+
+how do you run a  maven spring boot app in cmd:
+	mvn spring-boot:run
+
+
+	mvn spring-boot:build-image				this is going to create a docker image of our app
+
+		run the above command in a location where pom.xml is present.
+
+
+
+
+
+
+
+@PutMapping("/{id}")
+public ResponseEntity<Object> update Employee(@PathVariable("id") Long employeeId,@RequestBody Employee employee){
+	service.update(employee);
+	return ....
+}
+
+
+
+
+
+	CUSTOMER
+		ID
+		NAME
+		PHONE
+		List<Product> products
+
+
+	PRODUCT
+		ID
+		NAME
+		PRICE
+		CATEGORY
+
+	ORDERS
+		ID
+		ODATE
+		List<Product> products
+		QTY			
+		CUSTOMER
+
+
+
+
+
+
+@Embeddable
+class OrderIdType
+{
+	Long oid;
+	Long pid;
+}
+
+
+
+class Orders{
+
+	@Id
+	OrderIdType id;
+
+
+
+
+
+
+package com.wecp.booksmanagementsystem.controller;
+
+import com.wecp.booksmanagementsystem.entity.Book;
+import com.wecp.booksmanagementsystem.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+
+    @Autowired
+    private BookService bookService;
+
+    @GetMapping
+    public ResponseEntity<List<Book>> getAllBooks() {
+        List<Book> books = bookService.getAllBooks();
+        return ResponseEntity.ok(books);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+        return bookService.getBookById(id)
+                .map(book -> ResponseEntity.ok(book))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+        Book created = bookService.createBook(book);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
+        return bookService.updateBook(id, updatedBook)
+                .map(book -> ResponseEntity.ok(book))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        if (bookService.deleteBook(id)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}
+
+
+
+
+package com.wecp.booksmanagementsystem.service;
+
+import com.wecp.booksmanagementsystem.entity.Book;
+import com.wecp.booksmanagementsystem.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class BookService {
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
+    public Optional<Book> getBookById(Long id) {
+        return bookRepository.findById(id);
+    }
+
+    public Book createBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    public Optional<Book> updateBook(Long id, Book updatedBook) {
+        return bookRepository.findById(id).map(book -> {
+            book.setTitle(updatedBook.getTitle());
+            book.setAuthor(updatedBook.getAuthor());
+            return bookRepository.save(book);
+        });
+    }
+
+    public boolean deleteBook(Long id) {
+        if(bookRepository.existsById(id)) {
+            bookRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+}
+
+
+
+
+
+package com.wecp.booksmanagementsystem.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+        UserDetails user = User.withUsername("user")
+                .password(passwordEncoder.encode("user123"))
+                .roles("USER")
+                .build();
+
+        UserDetails admin = User.withUsername("admin")
+                .password(passwordEncoder.encode("admin123"))
+                .roles("ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.GET, "/api/books/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/books/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/books/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/books/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            )
+            .httpBasic()
+            .and()
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        return http.build();
+    }
+}
+
+
+
+
