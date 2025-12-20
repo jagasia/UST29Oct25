@@ -418,3 +418,50 @@ public class SecurityConfig {
 
 
 
+
+
+Implement CRUD using SpringBoot, JPA and MySQL for an online gaming application
+Problem Statement
+You are developing a Spring Boot application for an online gaming platform. The platform features a variety of games, with players joining teams to compete in these games. Each game can have multiple teams. Additionally, players are assigned to one team, and each team can consist of multiple players.
+
+
+
+Entities:
+
+Game Entity:
+Attributes:gameId: Unique identifier.
+gameName: Name of the game.
+genre: Genre of the game.
+Relationship: None in this simplified structure.
+Team Entity:
+Attributes:teamId: Unique identifier.
+teamName: Name of the team.
+players: List of player names in the team.
+game: The game this team is associated with.
+Relationship: ManyToOne with Game. (i.e., A team is associated with one game, but a game can have multiple teams.)
+Repositories:
+
+GameRepository: Should extend JpaRepository.
+TeamRepository: Should extend JpaRepository.
+Services:
+
+GameService: Provides methods to:
+addGame(Game game): Adds a new game.
+getGameById(Long gameId): Retrieves a game by its ID.
+getAllGames(): Returns all available games.
+TeamService: Offers methods to:
+addTeam(Team team): Adds a team.
+getTeamById(Long teamId): Retrieves a team by their ID.
+getAllTeams(): Returns all teams.
+Controllers:
+
+GameController: Handles requests related to the Game entity:
+POST /games: Uses GameService.addGame(Game game) to create a new game. Details are provided in the request body.
+GET /games/{gameId}: Uses GameService.getGameById(Long gameId) to fetch a game by its ID.
+GET /games: Uses GameService.getAllGames() to retrieve all games.
+TeamController: Manages requests related to the Team entity:
+POST /teams: Uses TeamService.addTeam(Team team) to register a new team. Details are provided in the request body.
+GET /teams/{teamId}: Uses TeamService.getTeamById(Long teamId) to retrieve a team by their ID.
+GET /teams: Uses TeamService.getAllTeams() to fetch all teams.
+
+
