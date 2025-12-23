@@ -1,0 +1,45 @@
+Demo:
+
+we have learned to create a docker image of a spring boot app using mvn command.
+
+we should learn to create a docker image using Dockerfile
+
+a docker file name must be always Dockerfile
+with no extension
+
+
+docker build command is used to build docker image.
+
+
+1) choose the spring boot project that you want to containerize (you want to build a docker image of this project).
+	docker-demo-rest
+
+2) in that project root, create a Dockerfile and write the following. Ensure that the jar file is generated and its name  is copied.
+
+FROM eclipse-temurin:21-jdk
+VOLUME /tmp
+EXPOSE 5000
+ADD target/docker-demo-rest-0.0.1-SNAPSHOT.jar jag.jar
+ENTRYPOINT ["java","-jar","jag.jar"]
+
+
+3) lets build the docker image for this project.
+go to cmd:		where Dockerfile is present
+
+docker build -t ashok .
+
+
+4) check:
+	docker images
+
+5) run this image
+	docker run -p 5000:5000 ashok
+
+---------------------------------------
+now, lets push this docker image to docker hub.
+
+docker tag ashok jagindia/ashok
+docker push jagindia/ashok
+
+
+

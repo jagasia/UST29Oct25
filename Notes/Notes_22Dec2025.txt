@@ -1,0 +1,75 @@
+For examination:
+
+do you know
+1) How many http methods you know?
+	GET
+	POST
+	PUT
+	DELETE
+	PATCH
+	
+
+2) How many http status codes you know
+
+
+
+NO_CONTENT
+noContent()
+
+
+3) response entity syntax
+	methods
+
+4) How many Annotations
+	@Entity
+	@Table(name="EMP")	
+	@Id
+	@GeneratedValue
+	@Column
+	@NotNull
+	@NotBlank
+
+	@OneToOne
+	@OneToMany
+	@ManyToOne
+	@ManyToMany
+
+
+	@Repository
+	public interface BookRepository extends JpaRepository<Book, Long>
+	{}
+
+	@Service
+	
+		autowiring vs constructor
+
+	@RestController
+	@RequestMapping(value="/product", method=HttpMethod.GET)
+	public class ProductController
+	{
+		@GetMapping
+		public List<Product> read(){
+			return ...;
+		}
+	}
+
+
+
+JPQL
+
+	@Query()
+	public List<Product> 
+
+
+
+
+
+finder methods
+		@Query(value="select * from Product p where p.price>:price", nativeQuery=true)
+		List<Product> findByPriceAbove(@Param("price") Double price);
+
+
+
+	curl GET http://localhost:8080/product
+
+
