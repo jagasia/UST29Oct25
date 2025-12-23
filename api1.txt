@@ -1,0 +1,644 @@
+api/project/fitness-coach/nutrition-plan
+
+
+
+curl -X POST http://localhost:3000/api/project/fitness-coach/nutrition-plan \\
+-H "Content-Type: application/json" \\
+-d '{
+  "clientProfile": {
+    "age": 30,
+    "sex": "male",
+    "heightCm": 175,
+    "weightKg": 75,
+    "goal": "muscle_gain",
+    "activityLevel": "active",
+    "workoutsPerWeek": 5,
+    "dietPreference": "omnivore",
+    "cuisinePreference": "indian",
+    "allergies": ["peanuts"],
+    "medicalFlags": []
+  },
+  "planPrefs": {
+    "days": 7,
+    "mealsPerDay": 4,
+    "budget": "medium",
+    "cookingTime": "medium"
+  }
+}'
+
+--- Example Response ---
+{
+  "domainTag": "PROJECT_FITNESS_NUTRITION_V1",
+  "auth": "anonymous",
+  "mode": "normal",
+  "targets": {
+    "calories": 3010,
+    "proteinG": 150,
+    "carbsG": 393,
+    "fatsG": 60,
+    "fiberG": 35,
+    "waterL": 2.6
+  },
+  "nutritionPlan": {
+    "days": [ ... ],
+    "substitutions": [ ... ],
+    "groceryList": [ ... ]
+  },
+  "safety": {
+    "disclaimer": "This is an AI-generated plan. Consult a qualified professional before starting any new diet or fitness program.",
+    "flags": []
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+curl -X POST https://career.upskillit.com/api/project/fitness-coach/nutrition-plan \
+  -H "Content-Type: application/json" \
+  -d '{
+    "clientProfile": {
+      "age": 28,
+      "sex": "male",
+      "heightCm": 172,
+      "weightKg": 70,
+      "goal": "fat_loss",
+      "activityLevel": "moderate",
+      "workoutsPerWeek": 4,
+      "dietPreference": "omnivore",
+      "cuisinePreference": "indian",
+      "allergies": [],
+      "medicalFlags": []
+    },
+    "planPrefs": {
+      "days": 7,
+      "mealsPerDay": 4,
+      "budget": "medium",
+      "cookingTime": "medium"
+    }
+  }'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "domainTag": "PROJECT_FITNESS_NUTRITION_V1",
+    "auth": "bearer_present",
+    "mode": "normal",
+    "targets": {
+        "calories": 2161,
+        "proteinG": 126,
+        "carbsG": 288,
+        "fatsG": 56,
+        "fiberG": 35,
+        "waterL": 2.5
+    },
+    "nutritionPlan": {
+        "days": [
+            {
+                "day": 1,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Dosa",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": "with chutney"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Chicken Breast",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "grilled or baked"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Mixed Nuts",
+                                "quantity": 30,
+                                "unit": "g",
+                                "notes": "almonds, walnuts"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Fish (Salmon)",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "baked"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "day": 2,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Upma",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "with vegetables"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Brown Rice",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            },
+                            {
+                                "food": "Fish (Salmon)",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "baked"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Greek Yogurt",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "plain"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Brown Rice",
+                                "quantity": 0.5,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            },
+                            {
+                                "food": "Egg Curry",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole eggs"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "day": 3,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Oats",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked with milk"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Egg Curry",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole eggs"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Apple",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": ""
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Dal (Lentils)",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "day": 4,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Idli",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "with sambar"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Brown Rice",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            },
+                            {
+                                "food": "Dal (Lentils)",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Mixed Nuts",
+                                "quantity": 30,
+                                "unit": "g",
+                                "notes": "almonds, walnuts"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Brown Rice",
+                                "quantity": 0.5,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            },
+                            {
+                                "food": "Chicken Breast",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "grilled or baked"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "day": 5,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Dosa",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": "with chutney"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Chicken Breast",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "grilled or baked"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Greek Yogurt",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "plain"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Fish (Salmon)",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "baked"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "day": 6,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Upma",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "with vegetables"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Brown Rice",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            },
+                            {
+                                "food": "Fish (Salmon)",
+                                "quantity": 150,
+                                "unit": "g",
+                                "notes": "baked"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Apple",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": ""
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Brown Rice",
+                                "quantity": 0.5,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            },
+                            {
+                                "food": "Egg Curry",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole eggs"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "day": 7,
+                "meals": [
+                    {
+                        "name": "Breakfast",
+                        "items": [
+                            {
+                                "food": "Oats",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked with milk"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Lunch",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Egg Curry",
+                                "quantity": 2,
+                                "unit": "piece",
+                                "notes": "whole eggs"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Snack",
+                        "items": [
+                            {
+                                "food": "Mixed Nuts",
+                                "quantity": 30,
+                                "unit": "g",
+                                "notes": "almonds, walnuts"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Dinner",
+                        "items": [
+                            {
+                                "food": "Roti",
+                                "quantity": 1,
+                                "unit": "piece",
+                                "notes": "whole wheat"
+                            },
+                            {
+                                "food": "Dal (Lentils)",
+                                "quantity": 1,
+                                "unit": "cup",
+                                "notes": "cooked"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "substitutions": [
+            {
+                "ifUnavailable": "Paneer",
+                "useInstead": "Tofu or firm cheese"
+            },
+            {
+                "ifUnavailable": "Chicken Breast",
+                "useInstead": "Fish or Turkey"
+            },
+            {
+                "ifUnavailable": "Brown Rice",
+                "useInstead": "Quinoa or Millets"
+            }
+        ],
+        "groceryList": [
+            {
+                "item": "Dosa",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Roti",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Chicken Breast",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Mixed Nuts",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Fish (Salmon)",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Upma",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Brown Rice",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Greek Yogurt",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Egg Curry",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Oats",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Apple",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Dal (Lentils)",
+                "approxQuantity": "As per plan"
+            },
+            {
+                "item": "Idli",
+                "approxQuantity": "As per plan"
+            }
+        ]
+    },
+    "safety": {
+        "disclaimer": "This is an AI-generated plan. Consult a qualified professional before starting any new diet or fitness program.",
+        "flags": []
+    }
+}

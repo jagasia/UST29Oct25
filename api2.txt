@@ -1,0 +1,58 @@
+--- Example cURL Request ---
+
+curl -X POST http://career.upskillit.com/api/project/fitness-coach/workout-suggestion \\
+-H "Content-Type: application/json" \\
+-d '{
+  "clientProfile": {
+    "age": 28,
+    "sex": "female",
+    "heightCm": 165,
+    "weightKg": 60,
+    "goal": "fat_loss",
+    "activityLevel": "light",
+    "workoutsPerWeek": 3,
+    "experienceLevel": "beginner",
+    "availableEquipment": "basic",
+    "injuryFlags": [],
+    "medicalFlags": []
+  },
+  "workoutPrefs": {
+    "sessionDurationMin": 45
+  }
+}'
+
+--- Example Response ---
+{
+  "domainTag": "PROJECT_FITNESS_WORKOUT_V1",
+  "auth": "anonymous",
+  "mode": "normal",
+  "workoutSuggestion": {
+    "weeklyPlan": [
+      {
+        "day": "Mon",
+        "focus": "Full Body Strength",
+        "durationMin": 45,
+        "warmup": [ ... ],
+        "main": [
+          { "name": "Dumbbell Bench Press", "sets": 3, "reps": "8-12", "restSec": 60, "notes": "Keep elbows at a 45-degree angle." },
+          { "name": "Dumbbell Rows", "sets": 3, "reps": "8-12 per arm", "restSec": 60, "notes": "Keep back straight." },
+          { "name": "Dumbbell Goblet Squats", "sets": 3, "reps": "10-15", "restSec": 60, "notes": "Keep chest up." },
+          { "name": "Dumbbell RDLs", "sets": 3, "reps": "10-12", "restSec": 60, "notes": "Focus on hinging at the hips." },
+          { "name": "Russian Twists (with DB)", "sets": 3, "reps": "15-20", "restSec": 60, "notes": "" }
+        ],
+        "cooldown": [ ... ]
+      },
+      { "day": "Tue", "focus": "Mobility/Walk", "durationMin": 30, "warmup": [], "main": [], "cooldown": [] },
+      { "day": "Wed", "focus": "Full Body Strength", ... },
+      { "day": "Thu", "focus": "Rest", "durationMin": 0, "warmup": [], "main": [], "cooldown": [] },
+      { "day": "Fri", "focus": "Full Body Strength", ... },
+      { "day": "Sat", "focus": "Rest", "durationMin": 0, "warmup": [], "main": [], "cooldown": [] },
+      { "day": "Sun", "focus": "Rest", "durationMin": 0, "warmup": [], "main": [], "cooldown": [] }
+    ],
+    "notes": [ ... ]
+  },
+  "safety": {
+    "disclaimer": "This is an AI-generated plan. Consult a qualified professional before starting any new fitness program, especially if you have pre-existing conditions.",
+    "flags": []
+  }
+}
