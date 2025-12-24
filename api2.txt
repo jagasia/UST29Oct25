@@ -1,6 +1,6 @@
 --- Example cURL Request ---
 
-curl -X POST http://career.upskillit.com/api/project/fitness-coach/workout-suggestion \\
+curl -X POST https://career.upskillit.com/api/project/fitness-coach/workout-suggestion \\
 -H "Content-Type: application/json" \\
 -d '{
   "clientProfile": {

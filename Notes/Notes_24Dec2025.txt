@@ -1,0 +1,4 @@
+first we should have a docker image of mysql
+
+What is the difference between @EnableWebSecurity and @EnableMethodSecurity?
+
