@@ -2,3 +2,71 @@ first we should have a docker image of mysql
 
 What is the difference between @EnableWebSecurity and @EnableMethodSecurity?
 
+	i) enable method security is used when we use @PreAuthorize annotation over a method with end point.
+	ii) enable web security is used when you do the same in securityFilterChain of a configuration class.
+
+
+
+
+
+
+To accept JWT Authorization header in swagger:
+
+1) create the below class in config package:
+
+package com.cts.demo.config;
+
+import org.springframework.context.annotation.Configuration;
+
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+
+@Configuration
+@SecurityScheme(
+  name = "Bearer Authentication",
+  type = SecuritySchemeType.HTTP,
+  bearerFormat = "JWT",
+  scheme = "bearer"
+)
+public class OpenAPI30Configuration {}
+
+2) in controller,
+
+add this on the end point methods:
+
+@SecurityRequirement(name = "Bearer Authentication")
+and add the parameter in the method:
+
+ex:
+
+	@GetMapping("/v2/admin/home")
+	@SecurityRequirement(name = "Bearer Authentication")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public String adminHome(Authentication authentication)
+	{
+		return "Hi Admin, welcome";
+	}
+
+
+
+//FILE UPLOAD IN SWAGGER OPEN API 3
+@RequestMapping(method = RequestMethod.POST, value = "/v1/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String uploadFile(@RequestPart("file") MultipartFile file) throws IOException
+	{
+		
+		return "uploaded file length is "+file.getBytes().length;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
