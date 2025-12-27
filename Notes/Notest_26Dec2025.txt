@@ -1,0 +1,38 @@
+User class?
+	a class that implements UserDetails interface
+	a class that extends User class
+	a pojo class
+
+
+
+when should we define finder method in repository interface?
+	when the username/ email  is not primary key (id)
+
+	findByEmail
+	
+
+
+	findByUsername
+
+Late comers after lunch break:
+
+Niranj
+Arul
+Arun
+Rishin
+Bharathan
+Fayaz
+Mythreyan
+Sandeep
+Ashok
+Aswin
+Shrisena
+
+
+
+Demo:
+use docker compose yml file to specify multiple services to run together.
+
+				
+
+

@@ -1,0 +1,75 @@
+Section: Java Programing
+Lowest Common Multiple (LCM)
+Tags:
+Array Manipulation
+LCM Computation
+Mathematical Concepts
+Optimization
+Problem Solving
+What this question evaluates
+Show less
+This question tests the candidate's ability to manipulate arrays and work with number-theoretic concepts like least common multiple (LCM). The candidate must efficiently process an array and find the largest LCM between adjacent elements.
+
+You are given an array of positive integers, arr, of size array_length. You are asked to build set S which consists of the LCM of every pair of adjacent elements in arr. Your task is to find the largest element in set S.
+
+
+
+
+
+For example, for the array [1, 2, 3, 4], set S = { lcm(1,2), lcm (2,3), lcm(3,4) } = {2, 6, 12}. The largest element is 12.
+
+
+Notes:
+
+
+
+The array contains only positive integers
+Adjacent elements may NOT be circular, i.e. they may not wrap around the end of the array
+
+
+Definition of LCM:
+
+A multiple of a number, num, is a number that can be divided by num. For example, the multiples of 5 are 5, 10, 15, 20, 25, and so on. The lowest common multiple (LCM) of two numbers, a and b, is the smallest positive number that is a multiple of both a and b.
+
+Function description
+Complete the largestAdjacentLCM function in the editor below. It has the following parameter(s):
+Name	Type	Description
+arr	INTEGER ARRAY	
+The given array
+Return	
+The function must return an INTEGER denoting the largest element in set S as specified in the problem statement
+
+
+
+Constraints
+4  ≤ array_length ≤  10^5
+1  ≤ arr[i] ≤  1500
+Input format for debugging
+The first line contains an integer, array_length, denoting the number of elements in arr.
+Each line i of the array_length subsequent lines (where 0 ≤ i < array_length) contains an integer describing arr[i].
+Sample Testcases
+Input	Output	Output Description
+4
+1
+3
+2
+4
+6
+set S = { lcm(1,3), lcm(3,2), lcm(2,4) } = {3, 6, 4}
+Largest element = 6
+4
+1
+2
+3
+4
+12
+Refer to the example given in the problem statement.
+5
+7
+3
+2
+9
+12
+36
+set S = { lcm(7,3), lcm(3,2), lcm(2,9), lcm(9,12) } = {21, 6, 18, 36}
+Largest element = 36

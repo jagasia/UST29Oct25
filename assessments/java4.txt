@@ -1,0 +1,92 @@
+Section: Day 5
+Special Numbers Calculation
+Tags:
+Array Manipulation
+Digit Summation
+Factorials
+Iterative Processes
+L1
+Pattern Recognition
+What this question evaluates
+Show more
+You are given an array of positive integers, arr, of size array_length. Your task is to repeatedly take the sum of each digit in every integer in arr until the sum is less than 10. This is known as the final sum for the given integer. You need to calculate the factorial of the final sum for each integer in arr. Let this result be known as the factorial-sum of an integer.
+
+
+
+Let's say an integer k is equal to 8795. The final sum of k is calculated as shown below:
+
+
+
+8795 --> 8+7+9+5 = 29 --> 2+9 = 11 --> 1+1 = 2. Thus, the final sum of k is 2.
+
+
+An integer num is considered a special number if each of its digits is also present somewhere in the factorial-sum of num.
+
+
+
+Calculate how many special numbers there are in arr.
+
+
+
+Notes:
+
+
+
+
+
+The sum of digits of a single digit number is the number itself (e.g. final sum of 4 is 4)
+When determining whether a number is a special number or not, the order and position of digits is NOT important. The only condition is that every digit in num must be present somewhere in the factorial-sum of num for num to be considered a special number. For example, 122 is a special number because (1+2+2)! = 5! = 120. By observation, the only digits in 122 are 1 and 2. These digits are present in 120, the factorial sum of 122.
+The factorial of an integer, n, is the product of all positive integers less than or equal to n
+Function description
+Complete the factorialSum function in the editor below. It has the following parameter(s):
+Name	Type	Description
+arr	INTEGER ARRAY	
+The given array
+Return	
+The function must return an INTEGER denoting the number of special numbers in arr as specified in the problem statement
+
+
+
+Constraints
+1  ≤ array_length ≤  10^5
+1  ≤ arr[i] ≤  10^5
+Input format for debugging
+The first line contains an integer, array_length, denoting the number of elements in arr.
+Each line i of the array_length subsequent lines (where 0 ≤ i < array_length) contains an integer describing arr[i].
+Sample Testcases
+Input	Output	Output Description
+8
+310
+663
+845
+257
+561
+748
+735
+717
+0
+There are no special numbers in this array
+9
+264
+653
+122
+780
+396
+727
+797
+419
+211
+1
+There is one special number in this array — 122
+9
+833
+355
+243
+851
+360
+145
+214
+750
+112
+1
+There is one special number in this array — 360

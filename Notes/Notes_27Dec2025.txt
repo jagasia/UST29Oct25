@@ -1,0 +1,20 @@
+AWS 
+-------
+AWS CLI
+
+Create a task.
+Run the task in a cluster.
+
+
+
+SNS	=	Simple Notification Service
+
+queue / topic
+
+
+
+
+http://3.109.2.141:5000/
+
+
+
